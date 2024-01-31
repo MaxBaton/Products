@@ -1,0 +1,31 @@
+package com.maxbay.productsTestEffectiveMobile
+
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+
+data class NavTopLevelDestinationsCollection(
+    val destinations: List<NavTopLevelDestination>
+)
+
+interface NavDestination {
+    val route: String
+}
+
+interface NavTopLevelDestination: NavDestination {
+    @get:DrawableRes
+    val iconId: Int
+    @get:StringRes
+    val titleId: Int
+}
+
+fun NavHostController.navigateSingleTop(route: String) {
+    navigate(route = route) {
+        popUpTo(id = this@navigateSingleTop.graph.findStartDestination().id) {
+            saveState = true
+        }
+        launchSingleTop = true
+        restoreState = true
+    }
+}

@@ -15,3 +15,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "ProductsTestEffectiveMobile"
 include(":app")
+include(":core:ui")
+include(":core:navigation")
+include(":core:contract:mvi")
+include(":features:auth:domain")
+include(":features:auth:data")
+include(":features:auth:presentation")

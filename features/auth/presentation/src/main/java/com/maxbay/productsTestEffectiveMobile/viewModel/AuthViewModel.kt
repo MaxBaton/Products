@@ -1,6 +1,7 @@
 package com.maxbay.productsTestEffectiveMobile.viewModel
 
 import androidx.lifecycle.ViewModel
+import com.maxbay.productsTestEffectiveMobile.useCase.SignUpUserUseCase
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectFirstName
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectMobilePhone
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectSecondName
@@ -9,7 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class AuthViewModel: ViewModel(), AuthContract {
+class AuthViewModel(
+    private val signUpUserUseCase: SignUpUserUseCase
+): ViewModel(), AuthContract {
     private val _uiState = MutableStateFlow<AuthContract.State>(AuthContract.State.initial())
     override val uiState: StateFlow<AuthContract.State> = _uiState.asStateFlow()
 

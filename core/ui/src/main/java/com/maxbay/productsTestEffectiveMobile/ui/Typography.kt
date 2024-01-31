@@ -17,5 +17,11 @@ val typography = Typography(
         fontSize = 16.sp,
         lineHeight = 20.8.sp,
         fontWeight = FontWeight.W500
+    ),
+    titleSmall = TextStyle(
+        fontFamily = sfProDisplayFontFamily,
+        fontSize = 14.sp,
+        lineHeight = 18.2.sp,
+        fontWeight = FontWeight.W500
     )
 )

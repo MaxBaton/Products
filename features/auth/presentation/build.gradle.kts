@@ -38,6 +38,8 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:contract:mvi"))
     implementation(project(":features:auth:domain"))
 
     implementation(libs.core.ktx)

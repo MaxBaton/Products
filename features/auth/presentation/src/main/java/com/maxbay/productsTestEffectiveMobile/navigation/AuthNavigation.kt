@@ -15,6 +15,8 @@ object AuthNavDestination: NavDestination {
     override val route: String = "AuthNavDestination"
 }
 
+private const val EMPTY = ""
+
 fun NavGraphBuilder.auth(onNavigateToMenu: () -> Unit) {
     composable(route = AuthNavDestination.route) {
         val authViewModel: AuthViewModel = viewModel()
@@ -37,6 +39,15 @@ fun NavGraphBuilder.auth(onNavigateToMenu: () -> Unit) {
             },
             onMobilePhoneChange = { mobilePhone ->
                 authViewModel.handleEvent(event = AuthContract.Event.MobilePhoneChange(mobilePhone = mobilePhone))
+            },
+            onClearFirstName = {
+                authViewModel.handleEvent(event = AuthContract.Event.FistNameChange(firstName = EMPTY))
+            },
+            onClearSecondName = {
+                authViewModel.handleEvent(event = AuthContract.Event.SecondNameChange(secondName = EMPTY))
+            },
+            onClearMobilePhone = {
+                authViewModel.handleEvent(event = AuthContract.Event.MobilePhoneChange(mobilePhone = EMPTY))
             },
             onSignUp = {
                 authViewModel.handleEvent(event = AuthContract.Event.SignUp)

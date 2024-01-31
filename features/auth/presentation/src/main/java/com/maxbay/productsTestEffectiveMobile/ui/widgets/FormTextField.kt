@@ -69,17 +69,7 @@ fun FormTextField(
                 enabled = enabled,
                 singleLine = singleLine,
                 leadingIcon = leadingIcon,
-                trailingIcon = if (!isError) {
-                    trailingIcon
-                }else {
-                    {
-//                        Icon(
-//                            painter = painterResource(id = R.drawable.ic_trailing_icon),
-//                            contentDescription = stringResource(id = R.string.ic_trailing_icon_description),
-//                            tint = MaterialTheme.colorScheme.error
-//                        )
-                    }
-                },
+                trailingIcon = if (value.isNotBlank()) trailingIcon else null,
                 placeholder = {
                     Text(
                         modifier = Modifier.wrapContentSize(),

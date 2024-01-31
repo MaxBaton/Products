@@ -10,11 +10,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,6 +26,7 @@ import com.maxbay.productsTestEffectiveMobile.ui.values.buttonHeight
 import com.maxbay.productsTestEffectiveMobile.ui.values.formTextFieldPaddingHorizontal
 import com.maxbay.productsTestEffectiveMobile.ui.values.formTextFieldSpaceBetween
 import com.maxbay.productsTestEffectiveMobile.ui.widgets.FormTextField
+import com.maxbay.productsTestEffectiveMobile.ui.widgets.IconDeleteText
 import com.maxbay.productsTestEffectiveMobile.ui.widgets.RoundButton
 import com.maxbay.productsTestEffectiveMobile.viewModel.AuthContract
 import com.maxbay.productsTestEffectiveMobile.widgets.topbars.TopBar
@@ -35,6 +38,9 @@ fun AuthScreen(
     onFirstNameChange: (firstName: String) -> Unit,
     onSecondNameChange: (secondName: String) -> Unit,
     onMobilePhoneChange: (mobilePhone: String) -> Unit,
+    onClearFirstName: () -> Unit,
+    onClearSecondName: () -> Unit,
+    onClearMobilePhone: () -> Unit,
     onSignUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -59,6 +65,9 @@ fun AuthScreen(
                     value = uiState.firstName,
                     placeholder = stringResource(id = R.string.first_name_placeholder),
                     isError = uiState.firstNameError,
+                    trailingIcon = {
+                        IconDeleteText(onClick = onClearFirstName)
+                    },
                     onChange = onFirstNameChange
                 )
 
@@ -67,6 +76,9 @@ fun AuthScreen(
                     value = uiState.secondName,
                     placeholder = stringResource(id = R.string.second_name_placeholder),
                     isError = uiState.secondNameError,
+                    trailingIcon = {
+                        IconDeleteText(onClick = onClearSecondName)
+                    },
                     onChange = onSecondNameChange
                 )
 
@@ -75,6 +87,9 @@ fun AuthScreen(
                     value = uiState.mobilePhone,
                     placeholder = stringResource(id = R.string.mobile_phone_placeholder),
                     isError = uiState.mobilePhoneError,
+                    trailingIcon = {
+                        IconDeleteText(onClick = onClearMobilePhone)
+                    },
                     onChange = onMobilePhoneChange
                 )
 

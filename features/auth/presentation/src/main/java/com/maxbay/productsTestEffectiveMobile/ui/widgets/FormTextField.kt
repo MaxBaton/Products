@@ -95,7 +95,7 @@ fun FormTextField(
                 container = {
                     TextFieldDefaults.OutlinedBorderContainerBox(
                         enabled = enabled,
-                        isError = false,
+                        isError = isError,
                         interactionSource,
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             containerColor = MaterialTheme.colorScheme.onPrimary,

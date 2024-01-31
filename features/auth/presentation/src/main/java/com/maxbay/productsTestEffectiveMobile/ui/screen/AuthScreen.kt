@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.maxbay.productsTestEffectiveMobile.presentation.R
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
+import com.maxbay.productsTestEffectiveMobile.ui.values.buttonHeight
 import com.maxbay.productsTestEffectiveMobile.ui.values.formTextFieldPaddingHorizontal
 import com.maxbay.productsTestEffectiveMobile.ui.values.formTextFieldSpaceBetween
 import com.maxbay.productsTestEffectiveMobile.ui.widgets.FormTextField
@@ -34,7 +35,7 @@ fun AuthScreen(
     onFirstNameChange: (firstName: String) -> Unit,
     onSecondNameChange: (secondName: String) -> Unit,
     onMobilePhoneChange: (mobilePhone: String) -> Unit,
-    onNavigateToMenu: () -> Unit,
+    onSignUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -57,6 +58,7 @@ fun AuthScreen(
                     modifier = Modifier.fillMaxWidth(),
                     value = uiState.firstName,
                     placeholder = stringResource(id = R.string.first_name_placeholder),
+                    isError = uiState.firstNameError,
                     onChange = onFirstNameChange
                 )
 
@@ -64,6 +66,7 @@ fun AuthScreen(
                     modifier = Modifier.fillMaxWidth(),
                     value = uiState.secondName,
                     placeholder = stringResource(id = R.string.second_name_placeholder),
+                    isError = uiState.secondNameError,
                     onChange = onSecondNameChange
                 )
 
@@ -71,14 +74,16 @@ fun AuthScreen(
                     modifier = Modifier.fillMaxWidth(),
                     value = uiState.mobilePhone,
                     placeholder = stringResource(id = R.string.mobile_phone_placeholder),
+                    isError = uiState.mobilePhoneError,
                     onChange = onMobilePhoneChange
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 RoundButton(
-                    isEnable = false,
-                    onClick = {}
+                    modifier = Modifier.height(buttonHeight),
+                    isEnable = uiState.isCorrectInput,
+                    onClick = onSignUp
                 )
             }
         }

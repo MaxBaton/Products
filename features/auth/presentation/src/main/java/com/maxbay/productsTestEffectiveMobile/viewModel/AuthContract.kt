@@ -35,6 +35,7 @@ interface AuthContract: UnidirectionalViewModel<
         data class FistNameChange(val firstName: String): Event
         data class SecondNameChange(val secondName: String): Event
         data class MobilePhoneChange(val mobilePhone: String): Event
+        data object SignUp: Event
     }
 
     sealed interface Effect {

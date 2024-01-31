@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="auth_title">Вход</string>
-    <string name="first_name_placeholder">Title</string>
-    <string name="second_name_placeholder">Title</string>
+    <string name="first_name_placeholder">Имя</string>
+    <string name="second_name_placeholder">Фамилия</string>
     <string name="mobile_phone_placeholder">Номер телефона</string>
     <string name="sign_in">Войти</string>
 </resources>

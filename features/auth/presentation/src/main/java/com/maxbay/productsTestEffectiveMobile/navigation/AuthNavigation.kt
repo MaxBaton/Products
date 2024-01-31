@@ -38,7 +38,9 @@ fun NavGraphBuilder.auth(onNavigateToMenu: () -> Unit) {
             onMobilePhoneChange = { mobilePhone ->
                 authViewModel.handleEvent(event = AuthContract.Event.MobilePhoneChange(mobilePhone = mobilePhone))
             },
-            onNavigateToMenu = onNavigateToMenu
+            onSignUp = {
+                authViewModel.handleEvent(event = AuthContract.Event.SignUp)
+            }
         )
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,12 +23,14 @@ fun RoundButton(
     modifier: Modifier = Modifier
 ) {
     Button(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(
-                shape = RoundedCornerShape(corner = CornerSize(size = buttonCorner)),
-                color = MaterialTheme.colorScheme.secondary
-            ),
+        modifier = modifier.fillMaxWidth(),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (isEnable) {
+                MaterialTheme.colorScheme.secondary
+            }else {
+                MaterialTheme.colorScheme.onSecondary
+            }
+        ),
         onClick = onClick
     ) {
         Text(

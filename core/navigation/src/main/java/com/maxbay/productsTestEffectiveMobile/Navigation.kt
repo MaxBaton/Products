@@ -6,14 +6,14 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
 data class NavTopLevelDestinationsCollection(
-    val destinations: List<NavTopLevelDestination>
+    val destinations: List<NavBottomMenuDestination>
 )
 
 interface NavDestination {
     val route: String
 }
 
-interface NavTopLevelDestination: NavDestination {
+interface NavBottomMenuDestination: NavDestination {
     @get:DrawableRes
     val iconId: Int
     @get:StringRes

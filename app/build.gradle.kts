@@ -44,25 +44,16 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:contract:mvi"))
+    implementation(project(":features:auth:domain"))
+    implementation(project(":features:auth:data"))
+    implementation(project(":features:auth:presentation"))
 
     implementation(libs.core.ktx)
 
     implementation(libs.lifecycle.runtime.ktx)
-
-    // ui compose
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-    implementation(libs.navigation)
-    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(libs.lifecycle.runtime.compose)
-    implementation(libs.kotlinx.collections.immutable)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.coil.compose)
 
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)

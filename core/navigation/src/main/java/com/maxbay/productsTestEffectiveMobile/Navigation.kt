@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
-data class NavTopLevelDestinationsCollection(
+data class NavBottomMenuDestinationsCollection(
     val destinations: List<NavBottomMenuDestination>
 )
 

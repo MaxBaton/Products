@@ -6,6 +6,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.maxbay.productsTestEffectiveMobile.NavDestination
+import com.maxbay.productsTestEffectiveMobile.di.AuthFeatureDepsProvider
+import com.maxbay.productsTestEffectiveMobile.di.DaggerAuthComponent
 import com.maxbay.productsTestEffectiveMobile.models.UserSignUp
 import com.maxbay.productsTestEffectiveMobile.mvi.userEffects
 import com.maxbay.productsTestEffectiveMobile.repository.AuthRepository
@@ -23,13 +25,12 @@ private const val EMPTY = ""
 
 fun NavGraphBuilder.auth(onNavigateToMenu: () -> Unit) {
     composable(route = AuthNavDestination.route) {
-        val authViewModel: AuthViewModel = viewModel(
-            factory = AuthViewModelFactory(signUpUserUseCase = SignUpUserUseCase(object: AuthRepository {
-                override suspend fun signUp(userSignUp: UserSignUp) {
-                    //
-                }
-            }))
-        )
+        val authComponent = DaggerAuthComponent
+            .builder()
+            .addDeps(deps = AuthFeatureDepsProvider.deps)
+            .build()
+
+        val authViewModel: AuthViewModel = viewModel(factory = authComponent.authViewModelFactory)
         val uiState by authViewModel.uiState.collectAsStateWithLifecycle()
 
         authViewModel.userEffects { effect ->

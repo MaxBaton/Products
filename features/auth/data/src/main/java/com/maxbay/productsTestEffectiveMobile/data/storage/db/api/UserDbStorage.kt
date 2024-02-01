@@ -9,4 +9,8 @@ class UserDbStorage(private val userDao: UserDao): UserStorage {
     override suspend fun save(userModelStorage: UserModelStorage) {
         userDao.add(userEntity = userModelStorage.toEntity())
     }
+
+    override suspend fun getRegisterUserId(): Int {
+        return userDao.getUserId()
+    }
 }

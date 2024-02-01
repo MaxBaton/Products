@@ -4,4 +4,5 @@ import com.maxbay.productsTestEffectiveMobile.data.storage.models.UserModelStora
 
 interface UserStorage {
     suspend fun save(userModelStorage: UserModelStorage)
+    suspend fun getRegisterUserId(): Int
 }

@@ -7,12 +7,13 @@ import androidx.room.RoomDatabase
 import com.maxbay.productsTestEffectiveMobile.data.storage.db.dao.UserDao
 import com.maxbay.productsTestEffectiveMobile.data.storage.db.entities.UserEntity
 
-private const val DB_NAME = "Products"
+private const val DB_NAME = "Products.db"
 private const val DB_VERSION = 1
 
 @Database(
     version = DB_VERSION,
-    entities = [UserEntity::class]
+    entities = [UserEntity::class],
+    exportSchema = false
 )
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao

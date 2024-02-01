@@ -4,4 +4,5 @@ import com.maxbay.productsTestEffectiveMobile.models.UserSignUp
 
 interface AuthRepository {
     suspend fun signUp(userSignUp: UserSignUp)
+    suspend fun getRegisterUserId(): Int
 }

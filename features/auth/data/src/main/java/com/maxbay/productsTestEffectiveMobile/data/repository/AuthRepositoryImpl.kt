@@ -17,4 +17,10 @@ class AuthRepositoryImpl(
             userStorage.save(userModelStorage = userSignUp.toStorage())
         }
     }
+
+    override suspend fun getRegisterUserId(): Int {
+        return withContext(context = dispatcher) {
+            userStorage.getRegisterUserId()
+        }
+    }
 }

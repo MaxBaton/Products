@@ -1,15 +1,19 @@
 package com.maxbay.productsTestEffectiveMobile.viewModel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.maxbay.productsTestEffectiveMobile.models.UserSignUp
 import com.maxbay.productsTestEffectiveMobile.useCase.SignUpUserUseCase
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectFirstName
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectMobilePhone
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectSecondName
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectMobilePhoneLength
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class AuthViewModel(
     private val signUpUserUseCase: SignUpUserUseCase
@@ -77,21 +81,37 @@ class AuthViewModel(
     }
 
     private fun signUp() {
-        val firstNameCorrect = _uiState.value.firstName.isCorrectFirstName()
-        val secondNameCorrect = _uiState.value.secondName.isCorrectSecondName()
-        val mobilePhoneCorrect = _uiState.value.mobilePhone.isCorrectMobilePhone()
-        if (firstNameCorrect && secondNameCorrect && mobilePhoneCorrect) {
+        val exceptionHandler = CoroutineExceptionHandler { _, _ ->
             _effect.update {
-                AuthContract.Effect.SignUp
+                AuthContract.Effect.None
             }
-        }else {
-            _uiState.update { currentState ->
-                currentState.copy(
-                    firstNameError = !firstNameCorrect,
-                    secondNameError = !secondNameCorrect,
-                    mobilePhoneError = !mobilePhoneCorrect,
-                    isCorrectInput = false
+        }
+
+        viewModelScope.launch(exceptionHandler) {
+            val firstNameCorrect = _uiState.value.firstName.isCorrectFirstName()
+            val secondNameCorrect = _uiState.value.secondName.isCorrectSecondName()
+            val mobilePhoneCorrect = _uiState.value.mobilePhone.isCorrectMobilePhone()
+            if (firstNameCorrect && secondNameCorrect && mobilePhoneCorrect) {
+                signUpUserUseCase.execute(
+                    userSignUp = UserSignUp(
+                        firstName = _uiState.value.firstName,
+                        secondName = _uiState.value.secondName,
+                        mobilePhone = _uiState.value.mobilePhone
+                    )
                 )
+
+                _effect.update {
+                    AuthContract.Effect.SignUp
+                }
+            }else {
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        firstNameError = !firstNameCorrect,
+                        secondNameError = !secondNameCorrect,
+                        mobilePhoneError = !mobilePhoneCorrect,
+                        isCorrectInput = false
+                    )
+                }
             }
         }
     }

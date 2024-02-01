@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.maxbay.productsTestEffectiveMobile.NavBottomMenuDestinationsCollection
 import com.maxbay.productsTestEffectiveMobile.NavDestination
+import com.maxbay.productsTestEffectiveMobile.presentation.di.DaggerMenuComponent
 import com.maxbay.productsTestEffectiveMobile.presentation.ui.screen.MenuScreen
 import com.maxbay.productsTestEffectiveMobile.presentation.viewModel.MenuViewModel
 import com.maxbay.productsTestEffectiveMobile.presentation.viewModel.MenuViewModelFactory
@@ -26,9 +27,13 @@ fun NavGraphBuilder.menu() {
 
 private fun NavGraphBuilder.bottomMenuInner() {
     composable(route = MenuDestination.route) {
+        val menuComponent = DaggerMenuComponent
+            .builder()
+            .build()
+
         val menuViewModel: MenuViewModel = viewModel(
             factory = MenuViewModelFactory(bottomMenuDestinationCollection = NavBottomMenuDestinationsCollection(
-                destinations = listOf()
+                destinations = menuComponent.bottomMenuDestinations.destinations
             ))
         )
         val bottomMenuUiState by menuViewModel.uiState.collectAsStateWithLifecycle()
@@ -45,8 +50,8 @@ object MenuDestination: NavDestination {
 
 fun NavHostController.navigateToMenu() {
     navigate(route = MenuDestination.route) {
-//        popUpTo(route = LoginDestination.route) {
-//            inclusive = true
-//        }
+        popUpTo(route = MainBottomMenuDestination.route) {
+            inclusive = true
+        }
     }
 }

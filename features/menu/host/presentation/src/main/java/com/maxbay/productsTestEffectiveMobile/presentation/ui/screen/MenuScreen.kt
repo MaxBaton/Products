@@ -14,6 +14,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.maxbay.productsTestEffectiveMobile.navigateSingleTop
+import com.maxbay.productsTestEffectiveMobile.presentation.navigation.MainBottomMenuDestination
+import com.maxbay.productsTestEffectiveMobile.presentation.navigation.main
 import com.maxbay.productsTestEffectiveMobile.presentation.ui.models.BottomMenuUiState
 import com.maxbay.productsTestEffectiveMobile.presentation.ui.widget.NavBar
 
@@ -39,15 +41,12 @@ fun MenuScreen(
         }
     ) { innerPaddings ->
         Box(modifier = Modifier.padding(paddingValues = innerPaddings)) {
-//            NavHost(
-//                navController = navController,
-//                startDestination = MenuDestination.route
-//            ) {
-//                menu(onItemClick = onItemClick)
-//                promotion()
-//                cart()
-//                profile(onLogoutClick = onLogoutClick)
-//            }
+            NavHost(
+                navController = navController,
+                startDestination = MainBottomMenuDestination.route
+            ) {
+                main()
+            }
         }
     }
 }

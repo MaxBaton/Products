@@ -9,7 +9,7 @@ import com.maxbay.productsTestEffectiveMobile.presentation.ui.MainScreen
 object MainBottomMenuDestination: NavBottomMenuDestination {
     override val iconId: Int = R.drawable.ic_main
     override val titleId: Int = R.string.main_screen_title
-    override val route: String = "MainBottomDestination"
+    override val route: String = "MainBottomMenuDestination"
 }
 
 fun NavGraphBuilder.main() {

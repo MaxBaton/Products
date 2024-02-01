@@ -13,6 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.maxbay.presentation.navigation.cart
 import com.maxbay.presentation.navigation.catalog
 import com.maxbay.productsTestEffectiveMobile.navigateSingleTop
 import com.maxbay.productsTestEffectiveMobile.presentation.navigation.MainBottomMenuDestination
@@ -48,6 +49,7 @@ fun MenuScreen(
             ) {
                 main()
                 catalog()
+                cart()
             }
         }
     }

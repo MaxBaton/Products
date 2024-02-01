@@ -1,5 +1,6 @@
 package com.maxbay.productsTestEffectiveMobile.presentation.di
 
+import com.maxbay.presentation.navigation.CartBottomMenuDestination
 import com.maxbay.presentation.navigation.CatalogBottomMenuDestination
 import com.maxbay.productsTestEffectiveMobile.NavBottomMenuDestinationsCollection
 import com.maxbay.productsTestEffectiveMobile.presentation.navigation.MainBottomMenuDestination
@@ -13,7 +14,8 @@ class MenuModule {
         return NavBottomMenuDestinationsCollection(
             destinations = listOf(
                 MainBottomMenuDestination,
-                CatalogBottomMenuDestination
+                CatalogBottomMenuDestination,
+                CartBottomMenuDestination
             )
         )
     }

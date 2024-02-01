@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -50,6 +52,7 @@ dependencies {
     implementation(project(":features:auth:domain"))
     implementation(project(":features:auth:data"))
     implementation(project(":features:auth:presentation"))
+    implementation(project(":features:menu:host:presentation"))
 
     implementation(libs.core.ktx)
 
@@ -59,6 +62,15 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    // room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    // Dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
     // tests
     testImplementation(libs.junit)

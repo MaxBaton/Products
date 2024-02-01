@@ -40,6 +40,9 @@ dependencies {
     // parsing
     implementation(libs.moshi.kotlin)
 
+    // room
+    implementation(libs.androidx.room.runtime)
+
     // tests
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -38,6 +39,8 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:contract:mvi"))
     implementation(project(":features:auth:domain"))
 
     implementation(libs.core.ktx)
@@ -46,4 +49,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

@@ -25,15 +25,16 @@ fun NavBar(
         destinations.forEachIndexed { index, destination ->
             val isSelected = currentDestination == destination.route
             val iconTintColor = if (isSelected) {
-                MaterialTheme.colorScheme.primary
+                MaterialTheme.colorScheme.onSecondary
             }else {
-                MaterialTheme.colorScheme.onSurface
+                MaterialTheme.colorScheme.surfaceVariant
             }
 
             BottomMenuItem(
                 modifier = Modifier.weight(1f).fillMaxHeight(),
                 iconId = destination.iconId,
                 titleId = destination.titleId,
+                iconTintColor = iconTintColor,
                 onClick = { onNavigateToTopLevel(destination.route) }
             )
         }

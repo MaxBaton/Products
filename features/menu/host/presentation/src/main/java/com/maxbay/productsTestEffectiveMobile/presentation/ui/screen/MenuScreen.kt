@@ -2,6 +2,7 @@ package com.maxbay.productsTestEffectiveMobile.presentation.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -44,7 +45,7 @@ fun MenuScreen(
             )
         }
     ) { innerPaddings ->
-        Box(modifier = Modifier.padding(paddingValues = innerPaddings)) {
+        Box(modifier = Modifier.fillMaxWidth().padding(paddingValues = innerPaddings)) {
             NavHost(
                 navController = navController,
                 startDestination = MainBottomMenuDestination.route

@@ -5,6 +5,7 @@ import com.maxbay.productsTestEffectiveMobile.useCase.SignUpUserUseCase
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectFirstName
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectMobilePhone
 import com.maxbay.productsTestEffectiveMobile.utils.isCorrectSecondName
+import com.maxbay.productsTestEffectiveMobile.utils.isCorrectMobilePhoneLength
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -61,15 +62,17 @@ class AuthViewModel(
     }
 
     private fun onMobilePhoneChange(mobilePhone: String) {
-        _uiState.update { currentState ->
-            val isCorrectMobilePhone = mobilePhone.isCorrectMobilePhone()
-            currentState.copy(
-                mobilePhone = mobilePhone,
-                mobilePhoneError = !isCorrectMobilePhone,
-                isCorrectInput = isCorrectMobilePhone
-                        && currentState.firstName.isCorrectFirstName()
-                        && currentState.secondName.isCorrectSecondName()
-            )
+        if (mobilePhone.isCorrectMobilePhoneLength()) {
+            _uiState.update { currentState ->
+                val isCorrectMobilePhone = mobilePhone.isCorrectMobilePhone()
+                currentState.copy(
+                    mobilePhone = mobilePhone,
+                    mobilePhoneError = !isCorrectMobilePhone,
+                    isCorrectInput = isCorrectMobilePhone
+                            && currentState.firstName.isCorrectFirstName()
+                            && currentState.secondName.isCorrectSecondName()
+                )
+            }
         }
     }
 

@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.maxbay.presentation.navigation.cart
 import com.maxbay.presentation.navigation.catalog
 import com.maxbay.presentation.navigation.discounts
+import com.maxbay.presentation.navigation.profile
 import com.maxbay.productsTestEffectiveMobile.navigateSingleTop
 import com.maxbay.productsTestEffectiveMobile.presentation.navigation.MainBottomMenuDestination
 import com.maxbay.productsTestEffectiveMobile.presentation.navigation.main
@@ -52,6 +53,7 @@ fun MenuScreen(
                 catalog()
                 cart()
                 discounts()
+                profile()
             }
         }
     }

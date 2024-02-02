@@ -2,6 +2,7 @@ package com.maxbay.productsTestEffectiveMobile.di
 
 import android.content.Context
 import com.maxbay.productsTestEffectiveMobile.di.modules.DatabaseModule
+import com.maxbay.productsTestEffectiveMobile.di.modules.NetworkModule
 import com.maxbay.productsTestEffectiveMobile.di.modules.RepositoriesModule
 import com.maxbay.productsTestEffectiveMobile.di.modules.ViewModelModule
 import com.maxbay.productsTestEffectiveMobile.repository.AuthRepository
@@ -15,7 +16,8 @@ import javax.inject.Singleton
     modules = [
         DatabaseModule::class,
         RepositoriesModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        NetworkModule::class
     ]
 )
 interface AppComponent: AuthFeatureDeps {

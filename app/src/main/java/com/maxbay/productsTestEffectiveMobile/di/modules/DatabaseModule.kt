@@ -9,8 +9,8 @@ import javax.inject.Singleton
 
 @Module
 class DatabaseModule {
-    @Singleton
     @Provides
+    @Singleton
     fun provideAppDatabase(context: Context): AppDatabase {
         return AppDatabase.create(context = context)
     }

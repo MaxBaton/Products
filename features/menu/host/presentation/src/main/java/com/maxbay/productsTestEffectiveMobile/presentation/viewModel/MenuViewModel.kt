@@ -13,9 +13,4 @@ class MenuViewModel(
 ): ViewModel() {
     private val _uiState = MutableStateFlow(BottomMenuUiState(destinations = bottomMenuDestinationCollection.destinations))
     val uiState: StateFlow<BottomMenuUiState> = _uiState.asStateFlow()
-
-    init {
-        val d = bottomMenuDestinationCollection.destinations
-        val s = d.size
-    }
 }

@@ -1,5 +1,8 @@
 package com.maxbay.presentation.navigation
 
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -23,7 +26,8 @@ fun NavGraphBuilder.catalog() {
             .addDeps(deps = CatalogFeatureDepsProvider.deps)
             .build()
         val catalogViewModel: CatalogViewModel = viewModel(factory = catalogComponent.catalogViewModelFactory)
+        val uiState by catalogViewModel.uiState.collectAsStateWithLifecycle()
 
-        CatalogScreen()
+        CatalogScreen(uiState = uiState)
     }
 }

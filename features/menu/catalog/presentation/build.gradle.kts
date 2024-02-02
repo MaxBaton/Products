@@ -40,6 +40,7 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:contract:mvi"))
     implementation(project(":features:menu:catalog:domain"))
     implementation(project(":features:menu:catalog:data"))
 

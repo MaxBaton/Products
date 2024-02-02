@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object AppRetrofit {
     private var INSTANCE: Retrofit? = null
-    private const val BASE_URL = "https://run.mocky.io/v3"
+    private const val BASE_URL = "https://run.mocky.io/v3/"
     // OkHttp
     private const val CONNECT_TIMEOUT: Long = 5
     private const val READ_TIMEOUT: Long = 8

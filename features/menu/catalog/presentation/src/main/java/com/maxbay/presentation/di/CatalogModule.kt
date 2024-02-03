@@ -1,6 +1,7 @@
 package com.maxbay.presentation.di
 
 import com.maxbay.domain.repository.ProductRepository
+import com.maxbay.domain.usecase.ChangeFavoriteStatusUseCase
 import com.maxbay.domain.usecase.FilterAllProductsUseCase
 import com.maxbay.domain.usecase.FilterProductsByTagUseCase
 import com.maxbay.domain.usecase.ObserveProductsUseCase
@@ -21,6 +22,11 @@ class CatalogModule {
     }
 
     @Provides
+    fun provideChangeFavoriteStatusUseCase(productRepository: ProductRepository): ChangeFavoriteStatusUseCase {
+        return ChangeFavoriteStatusUseCase(productRepository = productRepository)
+    }
+
+    @Provides
     fun provideFilterAllProductsUseCase(productRepository: ProductRepository): FilterAllProductsUseCase {
         return FilterAllProductsUseCase(productRepository = productRepository)
     }
@@ -29,12 +35,14 @@ class CatalogModule {
     fun provideCatalogViewModelFactory(
         observeProductsUseCase: ObserveProductsUseCase,
         filterProductsByTagUseCase: FilterProductsByTagUseCase,
-        filterAllProductsUseCase: FilterAllProductsUseCase
+        filterAllProductsUseCase: FilterAllProductsUseCase,
+        changeFavoriteStatusUseCase: ChangeFavoriteStatusUseCase
     ): CatalogViewModelFactory {
         return CatalogViewModelFactory(
             observeProductsUseCase = observeProductsUseCase,
             filterProductsByTagUseCase = filterProductsByTagUseCase,
-            filterAllProductsUseCase = filterAllProductsUseCase
+            filterAllProductsUseCase = filterAllProductsUseCase,
+            changeFavoriteStatusUseCase = changeFavoriteStatusUseCase
         )
     }
 }

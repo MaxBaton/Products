@@ -33,6 +33,7 @@ private const val GRID_ROW_ITEMS_COUNT = 2
 fun CatalogScreen(
     uiState: CatalogContract.State,
     onTagItemClick: (String) -> Unit,
+    onFavoriteClick: (productId: String, isFavorite: Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -66,7 +67,8 @@ fun CatalogScreen(
                                     .aspectRatio(1f)
                                     .fillMaxWidth()
                                     .padding(end = 16.dp),
-                                product = product
+                                product = product,
+                                onFavoriteClick = onFavoriteClick
                             )
 
                             // Check if the latest row

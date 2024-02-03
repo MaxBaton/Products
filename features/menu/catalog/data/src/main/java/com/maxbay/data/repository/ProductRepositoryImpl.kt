@@ -50,4 +50,16 @@ class ProductRepositoryImpl(
             products
         }
     }
+
+    override suspend fun changeFavoriteStatus(productId: String, isFavorite: Boolean) {
+        productsFlow.update { currentProducts ->
+            currentProducts.map { product ->
+                if (product.id == productId) {
+                    product.copy(isFavorite = isFavorite)
+                }else {
+                    product
+                }
+            }
+        }
+    }
 }

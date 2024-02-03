@@ -1,6 +1,5 @@
 package com.maxbay.presentation.navigation
 
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,6 +32,14 @@ fun NavGraphBuilder.catalog() {
             uiState = uiState,
             onTagItemClick = { tag ->
                 catalogViewModel.handleEvent(event = CatalogContract.Event.TagItemClick(tag = tag))
+            },
+            onFavoriteClick = { productId, isFavorite ->
+                catalogViewModel.handleEvent(
+                    event = CatalogContract.Event.ChangeFavoriteStatus(
+                        productId = productId,
+                        isFavorite = isFavorite
+                    )
+                )
             }
         )
     }

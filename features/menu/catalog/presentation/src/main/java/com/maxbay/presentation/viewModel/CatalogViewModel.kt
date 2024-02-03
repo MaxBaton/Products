@@ -7,6 +7,7 @@ import com.maxbay.domain.usecase.FilterAllProductsUseCase
 import com.maxbay.domain.usecase.FilterProductsByTagUseCase
 import com.maxbay.domain.usecase.ObserveProductsUseCase
 import com.maxbay.presentation.mappers.toUi
+import com.maxbay.presentation.utils.toTagsUi
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -60,7 +61,7 @@ class CatalogViewModel(
                     val (tags, selectedIndex) = if (currentState is CatalogContract.State.Success) {
                         currentState.tags to currentState.selectedTagIndex
                     }else {
-                        getAllTags(products = products).toImmutableList() to ALL_TAGS_INDEX
+                        getAllTags(products = products).toTagsUi().toImmutableList() to ALL_TAGS_INDEX
                     }
 
                     CatalogContract.State.Success(
@@ -82,7 +83,7 @@ class CatalogViewModel(
             if (_uiState.value is CatalogContract.State.Success) {
                 val currentState = _uiState.value as CatalogContract.State.Success
                 val currentTags = currentState.tags
-                val itemByTitle = currentTags.firstOrNull { it == tag }
+                val itemByTitle = currentTags.firstOrNull { it.tagServer == tag }
                 val tagIndex = itemByTitle?.let { currentTags.indexOf(it) } ?: ALL_TAGS_INDEX
                 val (selectedTitle, selectedIndex) = if (tagIndex == currentState.selectedTagIndex) {
                     EMPTY to UNSELECTED_TAG_INDEX
@@ -115,7 +116,7 @@ class CatalogViewModel(
         }
     }
 
-    private fun getAllTags(products: List<Product>): Set<String> {
+    private fun getAllTags(products: List<Product>): List<String> {
         val tags = mutableSetOf<String>()
 
         tags.add("all")
@@ -126,6 +127,6 @@ class CatalogViewModel(
             }
         }
 
-        return tags
+        return tags.toList()
     }
 }

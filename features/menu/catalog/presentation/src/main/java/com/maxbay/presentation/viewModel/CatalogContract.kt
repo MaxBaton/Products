@@ -1,6 +1,7 @@
 package com.maxbay.presentation.viewModel
 
 import com.maxbay.presentation.models.ProductUi
+import com.maxbay.presentation.models.TagUi
 import com.maxbay.productsTestEffectiveMobile.mvi.UnidirectionalViewModel
 import kotlinx.collections.immutable.ImmutableList
 
@@ -14,7 +15,7 @@ interface CatalogContract: UnidirectionalViewModel<
         data object Fail: State
         data class Success(
             val products: ImmutableList<ProductUi>,
-            val tags: ImmutableList<String>,
+            val tags: ImmutableList<TagUi>,
             val selectedTagIndex: Int
         ): State
     }

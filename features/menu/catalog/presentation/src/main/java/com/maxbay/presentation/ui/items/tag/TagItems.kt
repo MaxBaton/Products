@@ -8,13 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.maxbay.presentation.models.TagUi
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
 import com.maxbay.productsTestEffectiveMobile.ui.zeroVal
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun TagItems(
-    tags: ImmutableList<String>,
+    tags: ImmutableList<TagUi>,
     selectedIndex: Int,
     onTagItemClick: (String) -> Unit,
     modifier: Modifier = Modifier

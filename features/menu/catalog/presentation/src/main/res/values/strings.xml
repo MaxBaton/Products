@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="catalog_screen_title">Каталог</string>
+
+<!--    Tags-->
+    <string name="tag_all">Смотреть все</string>
+    <string name="tag_body">Тело</string>
+    <string name="tag_face">Лицо</string>
+    <string name="tag_mask">Маска</string>
+    <string name="tag_suntan">Загар</string>
+    <string name="tag_unknown">Не распознан</string>
 </resources>

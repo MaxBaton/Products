@@ -45,6 +45,9 @@ dependencies {
     implementation(libs.com.squareup.okhttp3.okhttp)
     implementation(libs.com.squareup.okhttp3.logging.interceptor)
 
+    // room
+    implementation(libs.androidx.room.runtime)
+
     // tests
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

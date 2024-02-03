@@ -2,6 +2,9 @@ package com.maxbay.productsTestEffectiveMobile.di.modules
 
 import com.maxbay.data.network.api.ProductApi
 import com.maxbay.data.repository.ProductRepositoryImpl
+import com.maxbay.data.storage.api.ProductStorage
+import com.maxbay.data.storage.db.api.ProductDbStorage
+import com.maxbay.data.storage.db.dao.ProductDao
 import com.maxbay.domain.repository.ProductRepository
 import com.maxbay.productsTestEffectiveMobile.data.repository.AuthRepositoryImpl
 import com.maxbay.productsTestEffectiveMobile.data.storage.api.UserStorage
@@ -30,11 +33,28 @@ class RepositoriesModule {
 
     @Provides
     @Singleton
-    fun provideProductRepository(productApi: ProductApi): ProductRepository {
-        return ProductRepositoryImpl(productApi = productApi)
+    @ProductDbStorageClass
+    fun provideProductStorage(productDao: ProductDao): ProductStorage {
+        return ProductDbStorage(productDao = productDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductRepository(
+        productApi: ProductApi,
+        @ProductDbStorageClass productStorage: ProductStorage
+    ): ProductRepository {
+        return ProductRepositoryImpl(
+            productApi = productApi,
+            productStorage = productStorage
+        )
     }
 }
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class UserDbStorageClass
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class ProductDbStorageClass

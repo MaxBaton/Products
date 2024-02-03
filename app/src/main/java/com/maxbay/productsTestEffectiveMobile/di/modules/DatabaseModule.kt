@@ -1,6 +1,7 @@
 package com.maxbay.productsTestEffectiveMobile.di.modules
 
 import android.content.Context
+import com.maxbay.data.storage.db.dao.ProductDao
 import com.maxbay.productsTestEffectiveMobile.data.storage.db.dao.UserDao
 import com.maxbay.productsTestEffectiveMobile.database.AppDatabase
 import dagger.Module
@@ -19,4 +20,9 @@ class DatabaseModule {
     fun provideUserDao(appDatabase: AppDatabase): UserDao {
         return appDatabase.userDao()
     }
-}
+
+    @Provides
+    fun provideProductDao(appDatabase: AppDatabase): ProductDao {
+        return appDatabase.productDao()
+    }
+ }

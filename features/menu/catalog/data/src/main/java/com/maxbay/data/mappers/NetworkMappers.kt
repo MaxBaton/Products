@@ -3,15 +3,26 @@ package com.maxbay.data.mappers
 import com.maxbay.data.network.models.FeedbackNetwork
 import com.maxbay.data.network.models.PriceNetwork
 import com.maxbay.data.network.models.ProductNetwork
+import com.maxbay.data.storage.models.ProductIsFavoriteModelStorage
 import com.maxbay.domain.models.Feedback
 import com.maxbay.domain.models.Price
 import com.maxbay.domain.models.Product
 
-internal fun List<ProductNetwork>.toDomain() = this.map { it.toDomain() }
+internal fun List<ProductNetwork>.toDomain(
+    productsIsFavorite: List<ProductIsFavoriteModelStorage>
+): List<Product> {
+    return this.map { productNetwork ->
+        val isFavorite = productsIsFavorite.firstOrNull {
+            it.id == productNetwork.id
+        }?.isFavorite ?: false
 
-private fun ProductNetwork.toDomain() = Product(
+        productNetwork.toDomain(isFavorite = isFavorite)
+    }
+}
+
+private fun ProductNetwork.toDomain(isFavorite: Boolean) = Product(
     id = this.id,
-    isFavorite = false,
+    isFavorite = isFavorite,
     price = this.priceNetwork.toDomain(),
     title = this.title,
     subtitle = this.subtitle,

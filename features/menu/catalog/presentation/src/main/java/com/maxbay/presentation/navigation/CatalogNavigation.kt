@@ -10,6 +10,7 @@ import com.maxbay.presentation.R
 import com.maxbay.presentation.di.CatalogFeatureDepsProvider
 import com.maxbay.presentation.di.DaggerCatalogComponent
 import com.maxbay.presentation.ui.CatalogScreen
+import com.maxbay.presentation.viewModel.CatalogContract
 import com.maxbay.presentation.viewModel.CatalogViewModel
 import com.maxbay.productsTestEffectiveMobile.NavBottomMenuDestination
 
@@ -28,6 +29,11 @@ fun NavGraphBuilder.catalog() {
         val catalogViewModel: CatalogViewModel = viewModel(factory = catalogComponent.catalogViewModelFactory)
         val uiState by catalogViewModel.uiState.collectAsStateWithLifecycle()
 
-        CatalogScreen(uiState = uiState)
+        CatalogScreen(
+            uiState = uiState,
+            onTagItemClick = { tag ->
+                catalogViewModel.handleEvent(event = CatalogContract.Event.TagItemClick(tag = tag))
+            }
+        )
     }
 }

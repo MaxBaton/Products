@@ -6,5 +6,6 @@ data class Product(
     val price: Price,
     val title: String,
     val subtitle: String,
-    val feedback: Feedback?
+    val feedback: Feedback?,
+    val tags: List<String>
 )

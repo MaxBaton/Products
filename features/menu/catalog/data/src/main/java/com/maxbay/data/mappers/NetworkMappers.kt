@@ -15,7 +15,8 @@ private fun ProductNetwork.toDomain() = Product(
     price = this.priceNetwork.toDomain(),
     title = this.title,
     subtitle = this.subtitle,
-    feedback = this.feedbackNetwork.toDomain()
+    feedback = this.feedbackNetwork.toDomain(),
+    tags = this.tags
 )
 
 private fun PriceNetwork.toDomain() = Price(

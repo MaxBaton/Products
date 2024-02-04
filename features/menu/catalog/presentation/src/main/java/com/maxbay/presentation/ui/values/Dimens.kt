@@ -7,6 +7,9 @@ internal val spaceBetweenTagItems = 6.dp
 internal val spaceBetweenPriceDiscountItems = 8.dp
 internal val spaceBetweenFeedbackItems = 2.dp
 internal val spaceVerticalBetweenProductItems = 2.dp
+internal val spaceSortText = 13.dp
+internal val spaceSortIcon = 6.dp
+internal val spaceFilterText = 8.dp
 
 internal val cornerTagItem = 12.dp
 internal val cornerBoxProductItem = 8.dp

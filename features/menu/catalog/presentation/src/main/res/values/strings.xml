@@ -4,6 +4,7 @@
     <string name="discount_str">-%1$d%%</string>
     <string name="feedback_count_str">(%1$d)</string>
     <string name="price_str">%1$s %2$s</string>
+    <string name="filters">Фильтры</string>
 
 <!--    Tags-->
     <string name="tag_all">Смотреть все</string>
@@ -19,4 +20,7 @@
     <string name="ic_favorite_description">Удалить из избранного</string>
     <string name="ic_star_description">Рейтинг товара</string>
     <string name="ic_add_to_cart_description">Добавить в корзину</string>
+    <string name="ic_sort_description">Сортировка</string>
+    <string name="ic_sort_popup_description">Сортировать по</string>
+    <string name="ic_filters_description">Фильтры</string>
 </resources>

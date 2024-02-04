@@ -11,13 +11,17 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.maxbay.presentation.R
 import com.maxbay.presentation.ui.items.ProductItem
+import com.maxbay.presentation.ui.items.SortItem
 import com.maxbay.presentation.ui.items.Spacer16
 import com.maxbay.presentation.ui.items.tag.TagItem
 import com.maxbay.presentation.ui.items.tag.TagItems
@@ -25,11 +29,13 @@ import com.maxbay.presentation.ui.values.paddingHorizontalBaseColumn
 import com.maxbay.presentation.ui.values.spaceBetweenItems
 import com.maxbay.presentation.viewModel.CatalogContract
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
+import com.maxbay.productsTestEffectiveMobile.widgets.TopBar
 import kotlin.math.ceil
 import kotlin.math.roundToInt
 
 private const val GRID_ROW_ITEMS_COUNT = 2
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CatalogScreen(
     uiState: CatalogContract.State,
@@ -53,6 +59,14 @@ fun CatalogScreen(
                     columns = GridCells.Fixed(count = GRID_ROW_ITEMS_COUNT),
                     verticalArrangement = Arrangement.spacedBy(spaceBetweenItems)
                 ) {
+                    item(span = { GridItemSpan(currentLineSpan = GRID_ROW_ITEMS_COUNT) }) {
+                        TopBar(title = stringResource(id = R.string.catalog_screen_title))
+                    }
+
+                    item(span = { GridItemSpan(currentLineSpan = GRID_ROW_ITEMS_COUNT) })  {
+                        SortItem(modifier = Modifier.padding(end = paddingHorizontalBaseColumn))
+                    }
+
                     item(span = { GridItemSpan(currentLineSpan = GRID_ROW_ITEMS_COUNT) }) {
                         // Tags
                         TagItems(

@@ -1,4 +1,4 @@
-package com.maxbay.productsTestEffectiveMobile.widgets.topbars
+package com.maxbay.productsTestEffectiveMobile.widgets
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.CenterAlignedTopAppBar

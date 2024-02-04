@@ -9,4 +9,7 @@
     <string name="tag_mask">Маска</string>
     <string name="tag_suntan">Загар</string>
     <string name="tag_unknown">Не распознан</string>
+
+<!--    Icon descriptions-->
+    <string name="ic_clear_tag_description">Снять выделенение</string>
 </resources>

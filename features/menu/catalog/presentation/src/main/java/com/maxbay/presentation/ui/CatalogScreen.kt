@@ -21,6 +21,7 @@ import com.maxbay.presentation.ui.items.ProductItem
 import com.maxbay.presentation.ui.items.Spacer16
 import com.maxbay.presentation.ui.items.tag.TagItem
 import com.maxbay.presentation.ui.items.tag.TagItems
+import com.maxbay.presentation.ui.values.paddingHorizontalBaseColumn
 import com.maxbay.presentation.ui.values.spaceBetweenItems
 import com.maxbay.presentation.viewModel.CatalogContract
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
@@ -45,7 +46,9 @@ fun CatalogScreen(
             CatalogContract.State.Loading -> Text(text = "loading")
             is CatalogContract.State.Success -> {
                 LazyVerticalGrid(
-                    modifier = modifier.fillMaxSize(),
+                    modifier = modifier
+                        .fillMaxSize()
+                        .padding(start = paddingHorizontalBaseColumn),
                     columns = GridCells.Fixed(count = GRID_ROW_ITEMS_COUNT),
                     verticalArrangement = Arrangement.spacedBy(spaceBetweenItems)
                 ) {

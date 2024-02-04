@@ -1,16 +1,17 @@
 package com.maxbay.presentation.ui.items.tag
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.maxbay.presentation.models.TagUi
+import com.maxbay.presentation.ui.values.paddingHorizontalBaseColumn
+import com.maxbay.presentation.ui.values.spaceBetweenTagItems
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
-import com.maxbay.productsTestEffectiveMobile.ui.zeroVal
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
@@ -22,21 +23,18 @@ fun TagItems(
 ) {
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(spaceBetweenTagItems)
     ) {
         itemsIndexed(tags) { index, tag ->
-            val padding = if (index == tags.size - 1) {
-                16.dp
-            }else {
-                zeroVal
-            }
-
             TagItem(
-                modifier = Modifier.padding(end = padding),
                 tag = tag,
                 isSelected = index == selectedIndex,
                 onItemClick = onTagItemClick
             )
+
+            if (index == tags.size - 1) {
+                Spacer(modifier = Modifier.width(paddingHorizontalBaseColumn))
+            }
         }
     }
 }

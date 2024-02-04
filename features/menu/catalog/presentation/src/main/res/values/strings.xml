@@ -23,4 +23,9 @@
     <string name="ic_sort_description">Сортировка</string>
     <string name="ic_sort_popup_description">Сортировать по</string>
     <string name="ic_filters_description">Фильтры</string>
+
+<!--    Sort-->
+    <string name="sort_popular">По популярности</string>
+    <string name="sort_price_desc">По уменьшению цены</string>
+    <string name="sort_price_asc">По возрастанию цены</string>
 </resources>

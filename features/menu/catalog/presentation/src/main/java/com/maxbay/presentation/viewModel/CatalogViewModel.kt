@@ -3,13 +3,17 @@ package com.maxbay.presentation.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maxbay.domain.models.Product
+import com.maxbay.domain.models.SortOrder
 import com.maxbay.domain.usecase.ChangeFavoriteStatusUseCase
 import com.maxbay.domain.usecase.FilterAllProductsUseCase
 import com.maxbay.domain.usecase.FilterProductsByTagUseCase
 import com.maxbay.domain.usecase.ObserveProductsUseCase
 import com.maxbay.presentation.mappers.toUi
+import com.maxbay.presentation.models.SortOrderUi
 import com.maxbay.presentation.models.TAG_ALL
+import com.maxbay.presentation.models.sortOrdersUi
 import com.maxbay.presentation.utils.toTagsUi
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,7 +24,7 @@ import kotlinx.coroutines.launch
 
 private const val ALL_TAGS_INDEX = 0
 private const val UNSELECTED_TAG_INDEX = -1
-private const val EMPTY = ""
+private val defaultSort = SortOrder.POPULAR
 
 class CatalogViewModel(
     private val observeProductsUseCase: ObserveProductsUseCase,
@@ -46,6 +50,7 @@ class CatalogViewModel(
             )
             is CatalogContract.Event.TagItemClick -> onTagItemClick(tag = event.tag)
             is CatalogContract.Event.ClearTagItemClick -> onClearTagItem()
+            is CatalogContract.Event.SortItemClick -> onSortClick(sortCode = event.sortCode)
         }
     }
 
@@ -65,16 +70,18 @@ class CatalogViewModel(
         viewModelScope.launch(exceptionHandler) {
             observeProductsUseCase.execute().collect { products ->
                 _uiState.update { currentState ->
-                    val (tags, selectedIndex) = if (currentState is CatalogContract.State.Success) {
-                        currentState.tags to currentState.selectedTagIndex
+                    val (tags, selectedIndex, selectedSortIndex) = if (currentState is CatalogContract.State.Success) {
+                        Triple(currentState.tags, currentState.selectedTagIndex, currentState.selectedSortIndex)
                     }else {
-                        getAllTags(products = products).toTagsUi().toImmutableList() to ALL_TAGS_INDEX
+                        Triple(getAllTags(products).toTagsUi().toImmutableList(), ALL_TAGS_INDEX, defaultSort.ordinal)
                     }
 
                     CatalogContract.State.Success(
                         products = products.toUi(),
                         tags = tags,
-                        selectedTagIndex = selectedIndex
+                        selectedTagIndex = selectedIndex,
+                        sortOrders = getAllSortOrdersUi(),
+                        selectedSortIndex = selectedSortIndex
                     )
                 }
             }
@@ -105,11 +112,7 @@ class CatalogViewModel(
                 }
 
                 _uiState.update {
-                    CatalogContract.State.Success(
-                        tags = currentState.tags,
-                        products = currentState.products,
-                        selectedTagIndex = tagIndex
-                    )
+                    currentState.copy(selectedTagIndex = tagIndex)
                 }
             }
         }
@@ -123,11 +126,7 @@ class CatalogViewModel(
                 filterAllProductsUseCase.execute()
 
                 _uiState.update {
-                    CatalogContract.State.Success(
-                        tags = currentState.tags,
-                        products = currentState.products,
-                        selectedTagIndex = UNSELECTED_TAG_INDEX
-                    )
+                    currentState.copy(selectedTagIndex = UNSELECTED_TAG_INDEX)
                 }
             }
         }
@@ -145,5 +144,31 @@ class CatalogViewModel(
         }
 
         return tags.toList()
+    }
+
+    private fun getAllSortOrdersUi(): ImmutableList<SortOrderUi> {
+        val ordersUi = mutableListOf<SortOrderUi>()
+
+        SortOrder.entries.forEach { order ->
+            val titleId = sortOrdersUi.getOrDefault(order.ordinal, -1)
+            if (titleId != -1) {
+                ordersUi.add(
+                    SortOrderUi(sortCode = order.ordinal, titleId = titleId)
+                )
+            }
+        }
+
+        return ordersUi.toImmutableList()
+    }
+
+    private fun onSortClick(sortCode: Int) {
+        viewModelScope.launch {
+            if (_uiState.value is CatalogContract.State.Success) {
+                val currentState = _uiState.value as CatalogContract.State.Success
+                _uiState.update {
+                    currentState.copy(selectedSortIndex = sortCode)
+                }
+            }
+        }
     }
 }

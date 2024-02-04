@@ -3,7 +3,7 @@ package com.maxbay.presentation.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,10 +20,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.maxbay.presentation.R
+import com.maxbay.presentation.ui.items.FilterItem
 import com.maxbay.presentation.ui.items.ProductItem
 import com.maxbay.presentation.ui.items.SortItem
 import com.maxbay.presentation.ui.items.Spacer16
-import com.maxbay.presentation.ui.items.tag.TagItem
 import com.maxbay.presentation.ui.items.tag.TagItems
 import com.maxbay.presentation.ui.values.paddingHorizontalBaseColumn
 import com.maxbay.presentation.ui.values.spaceBetweenItems
@@ -42,6 +42,7 @@ fun CatalogScreen(
     onTagItemClick: (tag: String) -> Unit,
     onClearTagItemClick: () -> Unit,
     onFavoriteClick: (productId: String, isFavorite: Boolean) -> Unit,
+    onSortClick: (sortCode: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -64,7 +65,17 @@ fun CatalogScreen(
                     }
 
                     item(span = { GridItemSpan(currentLineSpan = GRID_ROW_ITEMS_COUNT) })  {
-                        SortItem(modifier = Modifier.padding(end = paddingHorizontalBaseColumn))
+                        Row(
+                            modifier = Modifier.padding(end = paddingHorizontalBaseColumn),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            SortItem(
+                                sortOrders = uiState.sortOrders,
+                                selectedSortIndex = uiState.selectedSortIndex,
+                                onSortClick = onSortClick
+                            )
+                            FilterItem()
+                        }
                     }
 
                     item(span = { GridItemSpan(currentLineSpan = GRID_ROW_ITEMS_COUNT) }) {

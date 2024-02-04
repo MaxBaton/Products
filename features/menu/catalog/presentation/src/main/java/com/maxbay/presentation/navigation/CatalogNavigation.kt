@@ -43,6 +43,9 @@ fun NavGraphBuilder.catalog() {
                         isFavorite = isFavorite
                     )
                 )
+            },
+            onSortClick = { sortCode ->
+                catalogViewModel.handleEvent(event = CatalogContract.Event.SortItemClick(sortCode = sortCode))
             }
         )
     }

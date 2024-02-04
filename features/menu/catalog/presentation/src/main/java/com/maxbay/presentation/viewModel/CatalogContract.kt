@@ -1,6 +1,7 @@
 package com.maxbay.presentation.viewModel
 
 import com.maxbay.presentation.models.ProductUi
+import com.maxbay.presentation.models.SortOrderUi
 import com.maxbay.presentation.models.TagUi
 import com.maxbay.productsTestEffectiveMobile.mvi.UnidirectionalViewModel
 import kotlinx.collections.immutable.ImmutableList
@@ -16,7 +17,9 @@ interface CatalogContract: UnidirectionalViewModel<
         data class Success(
             val products: ImmutableList<ProductUi>,
             val tags: ImmutableList<TagUi>,
-            val selectedTagIndex: Int
+            val selectedTagIndex: Int,
+            val sortOrders: ImmutableList<SortOrderUi>,
+            val selectedSortIndex: Int
         ): State
     }
 
@@ -24,6 +27,7 @@ interface CatalogContract: UnidirectionalViewModel<
         data class ChangeFavoriteStatus(val productId: String, val isFavorite: Boolean): Event
         data class TagItemClick(val tag: String): Event
         data object ClearTagItemClick: Event
+        data class SortItemClick(val sortCode: Int): Event
     }
 
     sealed interface Effect {

@@ -19,7 +19,7 @@ fun TagItems(
     tags: ImmutableList<TagUi>,
     selectedIndex: Int,
     onTagItemClick: (tag: String) -> Unit,
-    onClearTagItemClick: (tag: String) -> Unit,
+    onClearTagItemClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyRow(

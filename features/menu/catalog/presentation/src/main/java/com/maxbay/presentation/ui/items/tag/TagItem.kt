@@ -31,7 +31,7 @@ fun TagItem(
     tag: TagUi,
     isSelected: Boolean,
     onItemClick: (tag: String) -> Unit,
-    onClearItemClick: (tag: String) -> Unit,
+    onClearItemClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -73,8 +73,8 @@ fun TagItem(
                 Icon(
                     modifier = Modifier
                         .padding(start = paddingStartIconClear)
-                        .clickable {
-                            onClearItemClick.invoke(tag.tagServer)
+                        .clickable{
+                            onClearItemClick.invoke()
                         },
                     painter = painterResource(id = R.drawable.ic_clear_tag),
                     contentDescription = stringResource(id = R.string.ic_clear_tag_description),

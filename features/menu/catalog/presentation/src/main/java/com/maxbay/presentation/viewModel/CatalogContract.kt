@@ -23,7 +23,7 @@ interface CatalogContract: UnidirectionalViewModel<
     sealed interface Event {
         data class ChangeFavoriteStatus(val productId: String, val isFavorite: Boolean): Event
         data class TagItemClick(val tag: String): Event
-        data class ClearTagItemClick(val tag: String): Event
+        data object ClearTagItemClick: Event
     }
 
     sealed interface Effect {

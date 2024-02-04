@@ -45,7 +45,7 @@ class CatalogViewModel(
                 isFavorite = event.isFavorite
             )
             is CatalogContract.Event.TagItemClick -> onTagItemClick(tag = event.tag)
-            is CatalogContract.Event.ClearTagItemClick -> onClearTagItem(tag = event.tag)
+            is CatalogContract.Event.ClearTagItemClick -> onClearTagItem()
         }
     }
 
@@ -115,7 +115,7 @@ class CatalogViewModel(
         }
     }
 
-    private fun onClearTagItem(tag: String) {
+    private fun onClearTagItem() {
         viewModelScope.launch {
             if (_uiState.value is CatalogContract.State.Success) {
                 val currentState = _uiState.value as CatalogContract.State.Success

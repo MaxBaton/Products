@@ -34,7 +34,7 @@ private const val GRID_ROW_ITEMS_COUNT = 2
 fun CatalogScreen(
     uiState: CatalogContract.State,
     onTagItemClick: (tag: String) -> Unit,
-    onClearTagItemClick: (tag: String) -> Unit,
+    onClearTagItemClick: () -> Unit,
     onFavoriteClick: (productId: String, isFavorite: Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {

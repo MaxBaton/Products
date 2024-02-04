@@ -16,5 +16,6 @@ data class ProductUi(
     val subtitle: String,
     val feedbackCount: Int,
     val feedbackRating: Double,
-    val tags: ImmutableList<String>
+    val tags: ImmutableList<String>,
+    val iconIds: ImmutableList<Int>
 )

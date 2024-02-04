@@ -1,6 +1,7 @@
 package com.maxbay.presentation.ui.items.favorite
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,11 +25,14 @@ import com.maxbay.presentation.ui.values.favoriteIconHeight
 import com.maxbay.presentation.ui.values.favoriteIconWidth
 import com.maxbay.presentation.ui.values.favoriteItemHeight
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
+import kotlinx.collections.immutable.ImmutableList
+import testProductUi
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoriteItem(
     isFavorite: Boolean,
+    icons: ImmutableList<Int>,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -53,13 +57,16 @@ fun FavoriteItem(
 
         val state = rememberPagerState(
             initialPage = 0,
-            pageCount = { 3 }
+            pageCount = { icons.size }
         )
         HorizontalPager(
             modifier = Modifier.fillMaxSize(),
             state = state
         ) {
-            Text(text = state.currentPage.toString())
+            Image(
+                painter = painterResource(id = icons[it]),
+                contentDescription = null
+            )
         }
     }
 }
@@ -69,7 +76,8 @@ fun FavoriteItem(
 internal fun FavoriteItemPreview() {
     ProductsTheme{
         FavoriteItem(
-            isFavorite = false
+            isFavorite = false,
+            icons = testProductUi.iconIds
         )
     }
 }

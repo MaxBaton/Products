@@ -61,7 +61,8 @@ fun ProductItem(
                         onFavoriteClick.invoke(product.id, !product.isFavorite)
                     }
                 ,
-                isFavorite = product.isFavorite
+                isFavorite = product.isFavorite,
+                icons = product.iconIds
             )
 
             Text(

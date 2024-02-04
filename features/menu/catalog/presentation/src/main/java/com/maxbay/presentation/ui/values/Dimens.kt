@@ -22,9 +22,10 @@ internal val paddingEndIcFavorite = 8.dp
 internal val paddingTopIcFavorite = 8.dp
 internal val paddingHorizontalBoxDiscount = 6.dp
 internal val paddingVerticalBoxDiscount = 3.dp
-internal val paddingStartColumnProductItem = 6.dp
+internal val paddingHorizontalColumnProductItem = 6.dp
+internal val paddingVerticalColumnProductItem = 8.dp
 
-internal val boxProductItemHeight = 431.dp
+internal val boxProductItemHeight = 287.dp
 internal val boxProductItemWidth = 168.dp
 internal val favoriteIconWidth = 20.dp
 internal val favoriteIconHeight = 18.dp

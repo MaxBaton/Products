@@ -69,7 +69,6 @@ fun CatalogScreen(
                         Column {
                             ProductItem(
                                 modifier = Modifier
-                                    .aspectRatio(1f)
                                     .fillMaxWidth()
                                     .padding(end = 16.dp),
                                 product = product,

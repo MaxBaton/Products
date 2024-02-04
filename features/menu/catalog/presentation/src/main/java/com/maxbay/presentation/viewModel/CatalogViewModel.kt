@@ -45,6 +45,7 @@ class CatalogViewModel(
                 isFavorite = event.isFavorite
             )
             is CatalogContract.Event.TagItemClick -> onTagItemClick(tag = event.tag)
+            is CatalogContract.Event.ClearTagItemClick -> onClearTagItem(tag = event.tag)
         }
     }
 
@@ -96,23 +97,36 @@ class CatalogViewModel(
                 val currentTags = currentState.tags
                 val itemByTitle = currentTags.firstOrNull { it.tagServer == tag }
                 val tagIndex = itemByTitle?.let { currentTags.indexOf(it) } ?: ALL_TAGS_INDEX
-                val (selectedTitle, selectedIndex) = if (tagIndex == currentState.selectedTagIndex) {
-                    EMPTY to UNSELECTED_TAG_INDEX
-                }else {
-                    tag to tagIndex
-                }
 
-                if (selectedIndex == ALL_TAGS_INDEX) {
+                if (tagIndex == ALL_TAGS_INDEX) {
                     filterAllProductsUseCase.execute()
                 }else {
-                    filterProductsByTagUseCase.execute(tag = selectedTitle)
+                    filterProductsByTagUseCase.execute(tag = tag)
                 }
 
                 _uiState.update {
                     CatalogContract.State.Success(
                         tags = currentState.tags,
                         products = currentState.products,
-                        selectedTagIndex = selectedIndex
+                        selectedTagIndex = tagIndex
+                    )
+                }
+            }
+        }
+    }
+
+    private fun onClearTagItem(tag: String) {
+        viewModelScope.launch {
+            if (_uiState.value is CatalogContract.State.Success) {
+                val currentState = _uiState.value as CatalogContract.State.Success
+
+                filterAllProductsUseCase.execute()
+
+                _uiState.update {
+                    CatalogContract.State.Success(
+                        tags = currentState.tags,
+                        products = currentState.products,
+                        selectedTagIndex = UNSELECTED_TAG_INDEX
                     )
                 }
             }

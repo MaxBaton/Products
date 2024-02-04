@@ -30,7 +30,8 @@ import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
 fun TagItem(
     tag: TagUi,
     isSelected: Boolean,
-    onItemClick: (String) -> Unit,
+    onItemClick: (tag: String) -> Unit,
+    onClearItemClick: (tag: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -73,7 +74,7 @@ fun TagItem(
                     modifier = Modifier
                         .padding(start = paddingStartIconClear)
                         .clickable {
-                        // click
+                            onClearItemClick.invoke(tag.tagServer)
                         },
                     painter = painterResource(id = R.drawable.ic_clear_tag),
                     contentDescription = stringResource(id = R.string.ic_clear_tag_description),
@@ -91,7 +92,8 @@ internal fun TagItemPreview() {
         TagItem(
             tag = TagUi(tagServer = TAG_ALL, tagUiId = R.string.tag_all),
             isSelected = true,
-            onItemClick = {}
+            onItemClick = {},
+            onClearItemClick = {}
         )
     }
 }

@@ -18,7 +18,8 @@ import kotlinx.collections.immutable.ImmutableList
 fun TagItems(
     tags: ImmutableList<TagUi>,
     selectedIndex: Int,
-    onTagItemClick: (String) -> Unit,
+    onTagItemClick: (tag: String) -> Unit,
+    onClearTagItemClick: (tag: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
@@ -29,7 +30,8 @@ fun TagItems(
             TagItem(
                 tag = tag,
                 isSelected = index == selectedIndex,
-                onItemClick = onTagItemClick
+                onItemClick = onTagItemClick,
+                onClearItemClick = onClearTagItemClick
             )
 
             if (index == tags.size - 1) {

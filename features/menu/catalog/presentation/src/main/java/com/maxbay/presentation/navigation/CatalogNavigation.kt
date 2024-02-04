@@ -33,6 +33,9 @@ fun NavGraphBuilder.catalog() {
             onTagItemClick = { tag ->
                 catalogViewModel.handleEvent(event = CatalogContract.Event.TagItemClick(tag = tag))
             },
+            onClearTagItemClick = { tag ->
+                catalogViewModel.handleEvent(event = CatalogContract.Event.ClearTagItemClick(tag = tag))
+            },
             onFavoriteClick = { productId, isFavorite ->
                 catalogViewModel.handleEvent(
                     event = CatalogContract.Event.ChangeFavoriteStatus(

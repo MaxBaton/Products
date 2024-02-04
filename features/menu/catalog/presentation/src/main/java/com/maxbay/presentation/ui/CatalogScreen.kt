@@ -33,7 +33,8 @@ private const val GRID_ROW_ITEMS_COUNT = 2
 @Composable
 fun CatalogScreen(
     uiState: CatalogContract.State,
-    onTagItemClick: (String) -> Unit,
+    onTagItemClick: (tag: String) -> Unit,
+    onClearTagItemClick: (tag: String) -> Unit,
     onFavoriteClick: (productId: String, isFavorite: Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -58,7 +59,8 @@ fun CatalogScreen(
                             modifier = Modifier.fillMaxWidth(),
                             tags = uiState.tags,
                             selectedIndex = uiState.selectedTagIndex,
-                            onTagItemClick = onTagItemClick
+                            onTagItemClick = onTagItemClick,
+                            onClearTagItemClick = onClearTagItemClick
                         )
                     }
 

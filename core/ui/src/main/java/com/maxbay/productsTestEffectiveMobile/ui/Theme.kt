@@ -21,6 +21,7 @@ private val lightColorScheme = lightColorScheme(
     surfaceVariant = DarkGrey,
     onSurface = Black,
     onSurfaceVariant = DarkBlue,
+    inverseSurface = KinglyCloud,
     error = Red
 )
 
@@ -34,6 +35,7 @@ private val darkColorScheme = darkColorScheme(
     surfaceVariant = DarkGrey,
     onSurface = Black,
     onSurfaceVariant = DarkBlue,
+    inverseSurface = KinglyCloud,
     error = Red
 )
 

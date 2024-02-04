@@ -20,11 +20,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.maxbay.presentation.models.EMPTY_FEEDBACK_COUNT
 import com.maxbay.presentation.models.EMPTY_FEEDBACK_RATING
 import com.maxbay.presentation.models.ProductUi
-import com.maxbay.presentation.ui.items.favorite.FavoriteItem
+import com.maxbay.presentation.ui.items.favorite.FavoriteIconItem
+import com.maxbay.presentation.ui.items.favorite.IconsViewPagerItem
 import com.maxbay.presentation.ui.values.boxProductItemHeight
 import com.maxbay.presentation.ui.values.boxProductItemWidth
 import com.maxbay.presentation.ui.values.cornerBoxProductItem
 import com.maxbay.presentation.ui.values.elevationBoxProductItem
+import com.maxbay.presentation.ui.values.favoriteIconHeight
+import com.maxbay.presentation.ui.values.favoriteIconWidth
 import com.maxbay.presentation.ui.values.paddingHorizontalColumnProductItem
 import com.maxbay.presentation.ui.values.spaceVerticalBetweenProductItems
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
@@ -50,18 +53,23 @@ fun ProductItem(
                 shape = RoundedCornerShape(size = cornerBoxProductItem)
             )
     ) {
+        FavoriteIconItem(
+            modifier = Modifier
+                .height(favoriteIconHeight)
+                .width(favoriteIconWidth)
+                .align(Alignment.TopEnd)
+                .clickable {
+                    onFavoriteClick.invoke(product.id, !product.isFavorite)
+                },
+            isFavorite = product.isFavorite
+        )
+
         Column(
             modifier = Modifier.padding(horizontal = paddingHorizontalColumnProductItem),
             verticalArrangement = Arrangement.spacedBy(spaceVerticalBetweenProductItems)
         ) {
-            FavoriteItem(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-                        onFavoriteClick.invoke(product.id, !product.isFavorite)
-                    }
-                ,
-                isFavorite = product.isFavorite,
+            IconsViewPagerItem(
+                modifier = Modifier.fillMaxWidth(),
                 icons = product.iconIds
             )
 

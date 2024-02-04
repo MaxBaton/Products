@@ -1,10 +1,13 @@
-package com.maxbay.productsTestEffectiveMobile.presentation.ui.widget
+package com.maxbay.productsTestEffectiveMobile.presentation.ui.screen.items
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -16,7 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.maxbay.productsTestEffectiveMobile.presentation.R
+import com.maxbay.productsTestEffectiveMobile.presentation.ui.values.bottomMenuItemHeight
+import com.maxbay.productsTestEffectiveMobile.presentation.ui.values.bottomMenuItemWidth
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,21 +33,23 @@ fun BottomMenuItem(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.clickable(onClick = onClick)
+        modifier = modifier
+            .height(bottomMenuItemHeight)
+            .width(bottomMenuItemWidth)
+            .clickable(onClick = onClick),
+        verticalArrangement = Arrangement.SpaceEvenly,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                painter = painterResource(id = iconId),
-                contentDescription = stringResource(id = titleId),
-                tint = iconTintColor
-            )
-        }
+        Icon(
+            painter = painterResource(id = iconId),
+            contentDescription = stringResource(id = titleId),
+            tint = iconTintColor
+        )
 
         Text(
-            text = stringResource(id = titleId)
+            text = stringResource(id = titleId),
+            style = MaterialTheme.typography.bodySmall,
+            color = iconTintColor
         )
     }
 }

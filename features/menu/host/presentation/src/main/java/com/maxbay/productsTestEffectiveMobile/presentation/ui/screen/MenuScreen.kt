@@ -22,7 +22,7 @@ import com.maxbay.productsTestEffectiveMobile.navigateSingleTop
 import com.maxbay.productsTestEffectiveMobile.presentation.navigation.MainBottomMenuDestination
 import com.maxbay.productsTestEffectiveMobile.presentation.navigation.main
 import com.maxbay.productsTestEffectiveMobile.presentation.ui.models.BottomMenuUiState
-import com.maxbay.productsTestEffectiveMobile.presentation.ui.widget.NavBar
+import com.maxbay.productsTestEffectiveMobile.presentation.ui.screen.items.NavBar
 
 @Composable
 fun MenuScreen(

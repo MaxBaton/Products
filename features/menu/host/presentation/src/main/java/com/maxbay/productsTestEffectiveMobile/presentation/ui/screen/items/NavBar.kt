@@ -1,6 +1,5 @@
-package com.maxbay.productsTestEffectiveMobile.presentation.ui.widget
+package com.maxbay.productsTestEffectiveMobile.presentation.ui.screen.items
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar

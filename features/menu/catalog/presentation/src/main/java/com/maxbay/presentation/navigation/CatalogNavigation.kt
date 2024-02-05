@@ -46,6 +46,9 @@ fun NavGraphBuilder.catalog() {
             },
             onSortClick = { sortCode ->
                 catalogViewModel.handleEvent(event = CatalogContract.Event.SortItemClick(sortCode = sortCode))
+            },
+            onRepeatRequest = {
+                catalogViewModel.handleEvent(event = CatalogContract.Event.RepeatRequest)
             }
         )
     }

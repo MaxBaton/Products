@@ -28,6 +28,7 @@ interface CatalogContract: UnidirectionalViewModel<
         data class TagItemClick(val tag: String): Event
         data object ClearTagItemClick: Event
         data class SortItemClick(val sortCode: Int): Event
+        data object RepeatRequest: Event
     }
 
     sealed interface Effect {

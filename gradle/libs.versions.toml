@@ -27,7 +27,7 @@ coil-compose = "2.4.0"
 # compose
 composecompiler = "1.5.3"
 activity-compose = "1.8.2"
-compose-bom = "2024.01.00"
+compose-bom = "2023.10.01"
 navigation-compose = "2.7.6"
 
 # data

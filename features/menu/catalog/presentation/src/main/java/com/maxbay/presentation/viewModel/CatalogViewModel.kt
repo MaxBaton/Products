@@ -53,6 +53,7 @@ class CatalogViewModel(
             is CatalogContract.Event.TagItemClick -> onTagItemClick(tag = event.tag)
             is CatalogContract.Event.ClearTagItemClick -> onClearTagItem()
             is CatalogContract.Event.SortItemClick -> onSortClick(sortCode = event.sortCode)
+            CatalogContract.Event.RepeatRequest -> observeProducts()
         }
     }
 
@@ -70,6 +71,10 @@ class CatalogViewModel(
         }
 
         viewModelScope.launch(exceptionHandler) {
+            _uiState.update {
+                CatalogContract.State.Loading
+            }
+
             observeProductsUseCase.execute().collect { products ->
                 _uiState.update { currentState ->
                     val (tags, selectedIndex, selectedSortIndex) = if (currentState is CatalogContract.State.Success) {

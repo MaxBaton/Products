@@ -5,6 +5,8 @@
     <string name="feedback_count_str">(%1$d)</string>
     <string name="price_str">%1$s %2$s</string>
     <string name="filters">Фильтры</string>
+    <string name="fail_loading_message">Ошибка загрузки данных!</string>
+    <string name="repeat_request">Повторить запрос</string>
 
 <!--    Tags-->
     <string name="tag_all">Смотреть все</string>

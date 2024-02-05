@@ -13,7 +13,6 @@ internal val spaceFilterText = 8.dp
 
 internal val cornerTagItem = 12.dp
 internal val cornerBoxProductItem = 8.dp
-internal val corneBoxDiscount = 4.dp
 
 internal val elevationBoxProductItem = 5.dp
 
@@ -26,8 +25,8 @@ internal val paddingTopIcFavorite = 8.dp
 internal val paddingHorizontalBoxDiscount = 6.dp
 internal val paddingVerticalBoxDiscount = 3.dp
 internal val paddingHorizontalColumnProductItem = 6.dp
-internal val paddingVerticalColumnProductItem = 8.dp
 internal val paddingIndicator = 2.dp
+internal val paddingHorizontalViewPager = 24.dp
 
 internal val boxProductItemHeight = 287.dp
 internal val boxProductItemWidth = 168.dp

@@ -14,7 +14,7 @@ import com.maxbay.productsTestEffectiveMobile.presentation.R
 fun IconDeleteText(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
         Icon(
-            painter = painterResource(id = R.drawable.ic_close),
+            painter = painterResource(id = R.drawable.ic_clear_text),
             contentDescription = stringResource(id = R.string.ic_close_description),
             tint = Color.Unspecified
         )

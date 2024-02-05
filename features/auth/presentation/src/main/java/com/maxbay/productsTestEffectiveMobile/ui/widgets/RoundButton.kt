@@ -23,7 +23,16 @@ fun RoundButton(
     modifier: Modifier = Modifier
 ) {
     Button(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .background(
+                shape = RoundedCornerShape(buttonCorner),
+                color = if (isEnable) {
+                    MaterialTheme.colorScheme.secondary
+                }else {
+                    MaterialTheme.colorScheme.onSecondary
+                }
+            )
+            .fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             containerColor = if (isEnable) {
                 MaterialTheme.colorScheme.secondary

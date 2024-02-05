@@ -10,3 +10,5 @@ val formTextFieldPaddingHorizontal = 16.dp
 
 val buttonCorner = 8.dp
 val buttonHeight = 51.dp
+
+val paddingBottomLoyaltyProgram = 11.dp

@@ -9,9 +9,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +29,7 @@ import com.maxbay.productsTestEffectiveMobile.ui.tools.PhoneVisualTransformation
 import com.maxbay.productsTestEffectiveMobile.ui.values.buttonHeight
 import com.maxbay.productsTestEffectiveMobile.ui.values.formTextFieldPaddingHorizontal
 import com.maxbay.productsTestEffectiveMobile.ui.values.formTextFieldSpaceBetween
+import com.maxbay.productsTestEffectiveMobile.ui.values.paddingBottomLoyaltyProgram
 import com.maxbay.productsTestEffectiveMobile.ui.widgets.FormTextField
 import com.maxbay.productsTestEffectiveMobile.ui.widgets.IconDeleteText
 import com.maxbay.productsTestEffectiveMobile.ui.widgets.RoundButton
@@ -116,6 +120,15 @@ fun AuthScreen(
                     onClick = onSignUp
                 )
             }
+
+            Text(
+                modifier = Modifier
+                    .padding(bottom = paddingBottomLoyaltyProgram)
+                    .align(Alignment.BottomCenter),
+                text = stringResource(id = R.string.loyalty_program_text),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.surface
+            )
         }
     }
 }

@@ -8,6 +8,7 @@ import com.maxbay.domain.usecase.ChangeFavoriteStatusUseCase
 import com.maxbay.domain.usecase.FilterAllProductsUseCase
 import com.maxbay.domain.usecase.FilterProductsByTagUseCase
 import com.maxbay.domain.usecase.ObserveProductsUseCase
+import com.maxbay.domain.usecase.SortProductsUseCase
 import com.maxbay.presentation.mappers.toUi
 import com.maxbay.presentation.models.SortOrderUi
 import com.maxbay.presentation.models.TAG_ALL
@@ -30,7 +31,8 @@ class CatalogViewModel(
     private val observeProductsUseCase: ObserveProductsUseCase,
     private val filterProductsByTagUseCase: FilterProductsByTagUseCase,
     private val filterAllProductsUseCase: FilterAllProductsUseCase,
-    private val changeFavoriteStatusUseCase: ChangeFavoriteStatusUseCase
+    private val changeFavoriteStatusUseCase: ChangeFavoriteStatusUseCase,
+    private val sortProductsUseCase: SortProductsUseCase
 ): ViewModel(), CatalogContract {
     private val _uiState = MutableStateFlow<CatalogContract.State>(CatalogContract.State.Loading)
     override val uiState: StateFlow<CatalogContract.State> = _uiState.asStateFlow()
@@ -164,6 +166,8 @@ class CatalogViewModel(
     private fun onSortClick(sortCode: Int) {
         viewModelScope.launch {
             if (_uiState.value is CatalogContract.State.Success) {
+                sortProductsUseCase.execute(sortCode = sortCode)
+
                 val currentState = _uiState.value as CatalogContract.State.Success
                 _uiState.update {
                     currentState.copy(selectedSortIndex = sortCode)

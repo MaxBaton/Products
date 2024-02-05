@@ -5,6 +5,7 @@ import com.maxbay.domain.usecase.ChangeFavoriteStatusUseCase
 import com.maxbay.domain.usecase.FilterAllProductsUseCase
 import com.maxbay.domain.usecase.FilterProductsByTagUseCase
 import com.maxbay.domain.usecase.ObserveProductsUseCase
+import com.maxbay.domain.usecase.SortProductsUseCase
 import com.maxbay.presentation.viewModel.CatalogViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -32,17 +33,24 @@ class CatalogModule {
     }
 
     @Provides
+    fun provideSortProductsUseCase(productRepository: ProductRepository): SortProductsUseCase {
+        return SortProductsUseCase(productRepository = productRepository)
+    }
+
+    @Provides
     fun provideCatalogViewModelFactory(
         observeProductsUseCase: ObserveProductsUseCase,
         filterProductsByTagUseCase: FilterProductsByTagUseCase,
         filterAllProductsUseCase: FilterAllProductsUseCase,
-        changeFavoriteStatusUseCase: ChangeFavoriteStatusUseCase
+        changeFavoriteStatusUseCase: ChangeFavoriteStatusUseCase,
+        sortProductsUseCase: SortProductsUseCase
     ): CatalogViewModelFactory {
         return CatalogViewModelFactory(
             observeProductsUseCase = observeProductsUseCase,
             filterProductsByTagUseCase = filterProductsByTagUseCase,
             filterAllProductsUseCase = filterAllProductsUseCase,
-            changeFavoriteStatusUseCase = changeFavoriteStatusUseCase
+            changeFavoriteStatusUseCase = changeFavoriteStatusUseCase,
+            sortProductsUseCase = sortProductsUseCase
         )
     }
 }

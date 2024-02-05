@@ -5,6 +5,7 @@ import com.maxbay.data.network.api.ProductApi
 import com.maxbay.data.storage.api.ProductStorage
 import com.maxbay.data.storage.models.ProductIsFavoriteModelStorage
 import com.maxbay.domain.models.Product
+import com.maxbay.domain.models.SortOrder
 import com.maxbay.domain.repository.ProductRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,7 +21,9 @@ class ProductRepositoryImpl(
     override suspend fun getProducts(): Flow<List<Product>> {
         val productsNetwork = productApi.getAllProducts().items
         val productsIsFavorite = productStorage.getAllIsFavorites()
-        val products = productsNetwork.toDomain(productsIsFavorite = productsIsFavorite)
+        val products = productsNetwork.toDomain(
+            productsIsFavorite = productsIsFavorite
+        ).sortedByDescending { it.feedback?.rating }
         allProducts = products
         productsFlow.update {
             products
@@ -82,5 +85,26 @@ class ProductRepositoryImpl(
 
             newProducts
         }
+    }
+
+    override suspend fun sortProducts(sortOrder: SortOrder) {
+        val (sortProducts, sortAllProducts) = when(sortOrder) {
+            SortOrder.POPULAR -> {
+                productsFlow.value.sortedByDescending { it.feedback?.rating } to
+                        allProducts.sortedByDescending { it.feedback?.rating }
+            }
+            SortOrder.PRICE_DESC -> {
+                productsFlow.value.sortedByDescending { it.price.newPrice.toFloat() } to
+                        allProducts.sortedByDescending { it.price.newPrice.toFloat() }
+            }
+            SortOrder.PRICE_ASC -> {
+                productsFlow.value.sortedBy { it.price.newPrice.toFloat() } to
+                        allProducts.sortedBy { it.price.newPrice.toFloat() }
+            }
+        }
+
+        productsFlow.update { sortProducts }
+
+        allProducts = sortAllProducts
     }
 }

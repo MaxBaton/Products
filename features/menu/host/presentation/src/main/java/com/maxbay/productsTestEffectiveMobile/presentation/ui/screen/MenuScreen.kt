@@ -2,6 +2,7 @@ package com.maxbay.productsTestEffectiveMobile.presentation.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -13,9 +14,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.maxbay.presentation.navigation.cart
+import com.maxbay.presentation.navigation.catalog
+import com.maxbay.presentation.navigation.discounts
+import com.maxbay.presentation.navigation.profile
 import com.maxbay.productsTestEffectiveMobile.navigateSingleTop
+import com.maxbay.productsTestEffectiveMobile.presentation.navigation.MainBottomMenuDestination
+import com.maxbay.productsTestEffectiveMobile.presentation.navigation.main
 import com.maxbay.productsTestEffectiveMobile.presentation.ui.models.BottomMenuUiState
-import com.maxbay.productsTestEffectiveMobile.presentation.ui.widget.NavBar
+import com.maxbay.productsTestEffectiveMobile.presentation.ui.screen.items.NavBar
 
 @Composable
 fun MenuScreen(
@@ -38,16 +45,17 @@ fun MenuScreen(
             )
         }
     ) { innerPaddings ->
-        Box(modifier = Modifier.padding(paddingValues = innerPaddings)) {
-//            NavHost(
-//                navController = navController,
-//                startDestination = MenuDestination.route
-//            ) {
-//                menu(onItemClick = onItemClick)
-//                promotion()
-//                cart()
-//                profile(onLogoutClick = onLogoutClick)
-//            }
+        Box(modifier = Modifier.fillMaxWidth().padding(paddingValues = innerPaddings)) {
+            NavHost(
+                navController = navController,
+                startDestination = MainBottomMenuDestination.route
+            ) {
+                main()
+                catalog()
+                cart()
+                discounts()
+                profile()
+            }
         }
     }
 }

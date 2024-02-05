@@ -53,6 +53,9 @@ dependencies {
     implementation(project(":features:auth:data"))
     implementation(project(":features:auth:presentation"))
     implementation(project(":features:menu:host:presentation"))
+    implementation(project(":features:menu:catalog:domain"))
+    implementation(project(":features:menu:catalog:data"))
+    implementation(project(":features:menu:catalog:presentation"))
 
     implementation(libs.core.ktx)
 
@@ -71,6 +74,14 @@ dependencies {
     // Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    // Retrofit
+    implementation(libs.com.squareup.retrofit2.retrofit)
+    implementation(libs.com.squareup.retrofit2.converter.gson)
+
+    // OkHttp
+    implementation(libs.com.squareup.okhttp3.okhttp)
+    implementation(libs.com.squareup.okhttp3.logging.interceptor)
 
     // tests
     testImplementation(libs.junit)

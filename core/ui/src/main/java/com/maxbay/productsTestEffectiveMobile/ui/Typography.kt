@@ -23,5 +23,20 @@ val typography = Typography(
         fontSize = 14.sp,
         lineHeight = 18.2.sp,
         fontWeight = FontWeight.W500
+    ),
+    bodySmall = TextStyle(
+        fontFamily = sfProDisplayFontFamily,
+        fontSize = 10.sp,
+        fontWeight = FontWeight.W400
+    ),
+    labelSmall = TextStyle(
+        fontFamily = sfProDisplayFontFamily,
+        fontSize = 9.sp,
+        fontWeight = FontWeight.W400
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = sfProDisplayFontFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.W500
     )
 )

@@ -21,6 +21,7 @@ private val lightColorScheme = lightColorScheme(
     surfaceVariant = DarkGrey,
     onSurface = Black,
     onSurfaceVariant = DarkBlue,
+    inverseSurface = KinglyCloud,
     error = Red
 )
 
@@ -34,6 +35,7 @@ private val darkColorScheme = darkColorScheme(
     surfaceVariant = DarkGrey,
     onSurface = Black,
     onSurfaceVariant = DarkBlue,
+    inverseSurface = KinglyCloud,
     error = Red
 )
 
@@ -51,7 +53,7 @@ fun ProductsTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 

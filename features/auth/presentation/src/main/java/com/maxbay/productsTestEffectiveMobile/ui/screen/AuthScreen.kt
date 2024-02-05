@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -68,6 +69,9 @@ fun AuthScreen(
                     trailingIcon = {
                         IconDeleteText(onClick = onClearFirstName)
                     },
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Next
+                    ),
                     onChange = onFirstNameChange
                 )
 
@@ -79,6 +83,9 @@ fun AuthScreen(
                     trailingIcon = {
                         IconDeleteText(onClick = onClearSecondName)
                     },
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Next
+                    ),
                     onChange = onSecondNameChange
                 )
 
@@ -90,7 +97,10 @@ fun AuthScreen(
                     trailingIcon = {
                         IconDeleteText(onClick = onClearMobilePhone)
                     },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Decimal,
+                        imeAction = ImeAction.Done
+                    ),
                     visualTransformation = PhoneVisualTransformation(
                         mask = PhoneVisualTransformation.RU_MASK,
                         maskCharacter = PhoneVisualTransformation.RU_CHAR

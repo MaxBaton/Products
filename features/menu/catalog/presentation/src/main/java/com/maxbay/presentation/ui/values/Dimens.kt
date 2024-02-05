@@ -30,8 +30,8 @@ internal val paddingHorizontalViewPager = 24.dp
 
 internal val boxProductItemHeight = 287.dp
 internal val boxProductItemWidth = 168.dp
-internal val favoriteIconWidth = 20.dp
-internal val favoriteIconHeight = 18.dp
+internal val favoriteIconWidth = 24.dp
+internal val favoriteIconHeight = 24.dp
 internal val startItemHeight = 13.dp
 internal val startItemWidth = 13.dp
 internal val addToCartItemHeight = 24.dp

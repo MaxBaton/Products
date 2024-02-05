@@ -1,4 +1,4 @@
-package com.maxbay.presentation.ui.items.favorite
+package com.maxbay.presentation.ui.items
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image

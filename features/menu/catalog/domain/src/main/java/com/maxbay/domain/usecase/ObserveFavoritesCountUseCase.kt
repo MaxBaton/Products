@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 class ObserveFavoritesCountUseCase(
     private val productRepository: ProductRepository
 ) {
-    suspend fun execute(): Flow<Int> = productRepository.observeFavoritesCount()
+    fun execute(): Flow<Int> = productRepository.observeFavoritesCount()
 }

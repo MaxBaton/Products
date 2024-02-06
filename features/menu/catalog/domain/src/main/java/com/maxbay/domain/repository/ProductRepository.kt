@@ -10,4 +10,5 @@ interface ProductRepository {
     suspend fun filterAllProducts()
     suspend fun changeFavoriteStatus(productId: String, isFavorite: Boolean)
     suspend fun sortProducts(sortOrder: SortOrder)
+    fun observeFavoritesCount(): Flow<Int>
 }

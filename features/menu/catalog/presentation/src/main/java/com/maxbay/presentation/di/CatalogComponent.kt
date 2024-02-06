@@ -1,5 +1,6 @@
 package com.maxbay.presentation.di
 
+import com.maxbay.domain.usecase.ObserveFavoritesCountUseCase
 import com.maxbay.presentation.viewModel.CatalogViewModelFactory
 import dagger.Component
 
@@ -10,6 +11,7 @@ import dagger.Component
 )
 interface CatalogComponent {
     val catalogViewModelFactory: CatalogViewModelFactory
+    val observeFavoritesCountUseCase: ObserveFavoritesCountUseCase
 
     @Component.Builder
     interface Builder {

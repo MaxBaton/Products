@@ -27,6 +27,7 @@ import com.maxbay.productsTestEffectiveMobile.presentation.ui.screen.items.NavBa
 @Composable
 fun MenuScreen(
     uiState: BottomMenuUiState,
+    onSignOut: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val navController: NavHostController = rememberNavController()
@@ -54,7 +55,7 @@ fun MenuScreen(
                 catalog()
                 cart()
                 discounts()
-                profile()
+                profile(onSignOut = onSignOut)
             }
         }
     }

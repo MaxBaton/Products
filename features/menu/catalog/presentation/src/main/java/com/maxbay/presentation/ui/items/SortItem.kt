@@ -54,6 +54,14 @@ fun SortItem(
 
     Row(
         modifier = modifier
+            .pointerInput(true) {
+                detectTapGestures(
+                    onPress = {
+                        isContextMenuVisible = true
+                        pressOffset = DpOffset(it.x.toDp(), it.y.toDp())
+                    }
+                )
+            }
             .onSizeChanged {
                 itemHeight = with(density) { it.height.toDp() }
             },
@@ -76,15 +84,6 @@ fun SortItem(
         Spacer(modifier = Modifier.width(spaceSortIcon))
 
         Icon(
-            modifier = Modifier
-                .pointerInput(true) {
-                    detectTapGestures(
-                        onPress = {
-                            isContextMenuVisible = true
-                            pressOffset = DpOffset(it.x.toDp(), it.y.toDp())
-                        }
-                    )
-                },
             painter = painterResource(id = R.drawable.ic_sort_popup),
             contentDescription = stringResource(id = R.string.ic_sort_popup_description),
             tint = Color.Unspecified

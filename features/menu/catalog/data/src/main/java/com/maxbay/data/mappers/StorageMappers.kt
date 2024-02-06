@@ -11,7 +11,7 @@ internal fun ProductIsFavoriteModelStorage.toEntity() = ProductIsFavoriteEntity(
 
 internal fun List<ProductIsFavoriteModelStorage>.toEntity() = this.map { it.toEntity() }
 
-private fun ProductIsFavoriteDto.toStorage() = ProductIsFavoriteModelStorage(
+internal fun ProductIsFavoriteDto.toStorage() = ProductIsFavoriteModelStorage(
     id = this.id,
     isFavorite = this.isFavorite
 )

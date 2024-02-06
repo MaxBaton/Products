@@ -50,12 +50,15 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:contract:mvi"))
     implementation(project(":features:auth:domain"))
+    implementation(project(":features:auth:api"))
     implementation(project(":features:auth:data"))
     implementation(project(":features:auth:presentation"))
     implementation(project(":features:menu:host:presentation"))
     implementation(project(":features:menu:catalog:domain"))
     implementation(project(":features:menu:catalog:data"))
     implementation(project(":features:menu:catalog:presentation"))
+    implementation(project(":features:menu:catalog:api"))
+    implementation(project(":features:menu:profile:presentation"))
 
     implementation(libs.core.ktx)
 

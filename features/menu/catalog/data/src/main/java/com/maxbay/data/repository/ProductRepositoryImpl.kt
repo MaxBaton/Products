@@ -9,6 +9,7 @@ import com.maxbay.domain.models.SortOrder
 import com.maxbay.domain.repository.ProductRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 
 class ProductRepositoryImpl(
@@ -24,10 +25,13 @@ class ProductRepositoryImpl(
         val products = productsNetwork.toDomain(
             productsIsFavorite = productsIsFavorite
         ).sortedByDescending { it.feedback?.rating }
+
         allProducts = products
+
         productsFlow.update {
             products
         }
+
         return productsFlow
     }
 
@@ -106,5 +110,9 @@ class ProductRepositoryImpl(
         productsFlow.update { sortProducts }
 
         allProducts = sortAllProducts
+    }
+
+    override fun observeFavoritesCount(): Flow<Int> {
+        return productStorage.observeIsFavorites().map { it.size }
     }
 }

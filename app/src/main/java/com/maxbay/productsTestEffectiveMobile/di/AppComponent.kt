@@ -1,9 +1,13 @@
 package com.maxbay.productsTestEffectiveMobile.di
 
 import android.content.Context
+import com.maxbay.api.AuthApi
+import com.maxbay.api.CatalogApi
 import com.maxbay.domain.repository.ProductRepository
 import com.maxbay.presentation.di.CatalogFeatureDeps
+import com.maxbay.presentation.di.ProfileFeatureDeps
 import com.maxbay.productsTestEffectiveMobile.di.modules.DatabaseModule
+import com.maxbay.productsTestEffectiveMobile.di.modules.FeaturesModule
 import com.maxbay.productsTestEffectiveMobile.di.modules.NetworkModule
 import com.maxbay.productsTestEffectiveMobile.di.modules.RepositoriesModule
 import com.maxbay.productsTestEffectiveMobile.di.modules.ViewModelModule
@@ -19,12 +23,15 @@ import javax.inject.Singleton
         DatabaseModule::class,
         RepositoriesModule::class,
         ViewModelModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        FeaturesModule::class
     ]
 )
-interface AppComponent: AuthFeatureDeps, CatalogFeatureDeps {
+interface AppComponent: AuthFeatureDeps, CatalogFeatureDeps, ProfileFeatureDeps {
     override val authRepository: AuthRepository
     override val productRepository: ProductRepository
+    override val authApi: AuthApi
+    override val catalogApi: CatalogApi
 
     val appViewModelFactory: AppViewModelFactory
 

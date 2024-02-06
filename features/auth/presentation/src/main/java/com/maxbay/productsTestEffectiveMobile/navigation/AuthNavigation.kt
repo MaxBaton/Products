@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.maxbay.productsTestEffectiveMobile.NavDestination
 import com.maxbay.productsTestEffectiveMobile.di.AuthFeatureDepsProvider
@@ -65,4 +66,9 @@ fun NavGraphBuilder.auth(onNavigateToMenu: () -> Unit) {
             }
         )
     }
+}
+
+fun NavHostController.navigateToAuth() {
+    popBackStack()
+    navigate(route = AuthNavDestination.route)
 }

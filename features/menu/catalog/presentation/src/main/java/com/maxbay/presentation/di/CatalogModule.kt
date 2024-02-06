@@ -4,6 +4,7 @@ import com.maxbay.domain.repository.ProductRepository
 import com.maxbay.domain.usecase.ChangeFavoriteStatusUseCase
 import com.maxbay.domain.usecase.FilterAllProductsUseCase
 import com.maxbay.domain.usecase.FilterProductsByTagUseCase
+import com.maxbay.domain.usecase.ObserveFavoritesCountUseCase
 import com.maxbay.domain.usecase.ObserveProductsUseCase
 import com.maxbay.domain.usecase.SortProductsUseCase
 import com.maxbay.presentation.viewModel.CatalogViewModelFactory
@@ -35,6 +36,11 @@ class CatalogModule {
     @Provides
     fun provideSortProductsUseCase(productRepository: ProductRepository): SortProductsUseCase {
         return SortProductsUseCase(productRepository = productRepository)
+    }
+
+    @Provides
+    fun provideObserveFavoritesCountUseCase(productRepository: ProductRepository): ObserveFavoritesCountUseCase {
+        return ObserveFavoritesCountUseCase(productRepository = productRepository)
     }
 
     @Provides

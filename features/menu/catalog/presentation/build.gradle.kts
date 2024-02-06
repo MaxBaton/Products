@@ -42,7 +42,7 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:contract:mvi"))
     implementation(project(":features:menu:catalog:domain"))
-    implementation(project(":features:menu:catalog:data"))
+    implementation(project(":features:menu:catalog:api"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

@@ -3,6 +3,7 @@ package com.maxbay.presentation.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maxbay.api.AuthApi
+import com.maxbay.domain.usecase.ObserveFavoritesCountUseCase
 import com.maxbay.productsTestEffectiveMobile.useCase.GetRegisterUserUseCase
 import com.maxbay.productsTestEffectiveMobile.useCase.SignOutUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -14,7 +15,8 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val getRegisterUserUseCase: GetRegisterUserUseCase,
-    private val signOutUseCase: SignOutUseCase
+    private val signOutUseCase: SignOutUseCase,
+    private val observeFavoritesCountUseCase: ObserveFavoritesCountUseCase
 ): ViewModel(), ProfileContract {
     private val _uiState = MutableStateFlow<ProfileContract.State>(ProfileContract.State.Loading)
     override val uiState: StateFlow<ProfileContract.State> = _uiState.asStateFlow()
@@ -25,6 +27,7 @@ class ProfileViewModel(
 
     init {
         getRegisterUser()
+        observeFavoritesCount()
     }
 
     private fun getRegisterUser() {
@@ -34,8 +37,32 @@ class ProfileViewModel(
 
         viewModelScope.launch(exceptionHandler) {
             val user = getRegisterUserUseCase.execute()
-            _uiState.update {
-                ProfileContract.State.Success(user = user, favoritesCount = 1)
+            _uiState.update { currentState ->
+                if (currentState is ProfileContract.State.Success) {
+                    currentState.copy(user = user)
+                }else {
+                    ProfileContract.State.Success(
+                        user = user,
+                        favoritesCount = ProfileContract.State.Success.initialFavoritesCount()
+                    )
+                }
+            }
+        }
+    }
+
+    private fun observeFavoritesCount() {
+        viewModelScope.launch {
+            observeFavoritesCountUseCase.execute().collect { count ->
+                _uiState.update { currentState ->
+                    if (currentState is ProfileContract.State.Success) {
+                        currentState.copy(favoritesCount = count)
+                    }else {
+                        ProfileContract.State.Success(
+                            user = ProfileContract.State.Success.initialUser(),
+                            favoritesCount = count
+                        )
+                    }
+                }
             }
         }
     }

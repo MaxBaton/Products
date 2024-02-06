@@ -14,7 +14,18 @@ interface ProfileContract: UnidirectionalViewModel<
         data class Success(
             val user: User,
             val favoritesCount: Int
-        ): State
+        ): State {
+            companion object {
+                fun initialUser() = User(
+                    id = -1,
+                    firstName = "",
+                    secondName = "",
+                    mobilePhone = ""
+                )
+
+                fun initialFavoritesCount() = 0
+            }
+        }
     }
 
     sealed interface Event {

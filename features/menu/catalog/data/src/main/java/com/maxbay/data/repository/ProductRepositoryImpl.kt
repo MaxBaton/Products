@@ -17,6 +17,7 @@ class ProductRepositoryImpl(
 ): ProductRepository {
     private val productsFlow = MutableStateFlow<List<Product>>(emptyList())
     private var allProducts = emptyList<Product>()
+    private val favoritesCountFlow = MutableStateFlow(0)
 
     override suspend fun getProducts(): Flow<List<Product>> {
         val productsNetwork = productApi.getAllProducts().items
@@ -24,10 +25,17 @@ class ProductRepositoryImpl(
         val products = productsNetwork.toDomain(
             productsIsFavorite = productsIsFavorite
         ).sortedByDescending { it.feedback?.rating }
+
         allProducts = products
+
         productsFlow.update {
             products
         }
+
+        favoritesCountFlow.update {
+            productsIsFavorite.size
+        }
+
         return productsFlow
     }
 
@@ -85,6 +93,14 @@ class ProductRepositoryImpl(
 
             newProducts
         }
+
+        favoritesCountFlow.update {
+            if (isFavorite) {
+                it + 1
+            }else {
+                it - 1
+            }
+        }
     }
 
     override suspend fun sortProducts(sortOrder: SortOrder) {
@@ -106,5 +122,13 @@ class ProductRepositoryImpl(
         productsFlow.update { sortProducts }
 
         allProducts = sortAllProducts
+    }
+
+    override suspend fun observeFavoritesCount(): Flow<Int> {
+        favoritesCountFlow.update {
+            productStorage.getAllIsFavorites().size
+        }
+
+        return favoritesCountFlow
     }
 }

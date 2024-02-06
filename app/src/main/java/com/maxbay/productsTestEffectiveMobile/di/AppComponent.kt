@@ -2,6 +2,7 @@ package com.maxbay.productsTestEffectiveMobile.di
 
 import android.content.Context
 import com.maxbay.api.AuthApi
+import com.maxbay.api.CatalogApi
 import com.maxbay.domain.repository.ProductRepository
 import com.maxbay.presentation.di.CatalogFeatureDeps
 import com.maxbay.presentation.di.ProfileFeatureDeps
@@ -30,6 +31,7 @@ interface AppComponent: AuthFeatureDeps, CatalogFeatureDeps, ProfileFeatureDeps 
     override val authRepository: AuthRepository
     override val productRepository: ProductRepository
     override val authApi: AuthApi
+    override val catalogApi: CatalogApi
 
     val appViewModelFactory: AppViewModelFactory
 

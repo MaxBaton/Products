@@ -57,6 +57,7 @@ dependencies {
     implementation(project(":features:menu:catalog:domain"))
     implementation(project(":features:menu:catalog:data"))
     implementation(project(":features:menu:catalog:presentation"))
+    implementation(project(":features:menu:catalog:api"))
     implementation(project(":features:menu:profile:presentation"))
 
     implementation(libs.core.ktx)

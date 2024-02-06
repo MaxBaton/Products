@@ -43,6 +43,8 @@ dependencies {
     implementation(project(":core:contract:mvi"))
     implementation(project(":features:auth:api"))
     implementation(project(":features:auth:domain"))
+    implementation(project(":features:menu:catalog:api"))
+    implementation(project(":features:menu:catalog:domain"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

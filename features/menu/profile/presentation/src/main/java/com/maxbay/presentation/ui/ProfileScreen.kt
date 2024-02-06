@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.maxbay.presentation.R
 import com.maxbay.presentation.ui.items.ButtonSignOutItem
 import com.maxbay.presentation.ui.items.ProfileElement
+import com.maxbay.presentation.ui.utils.getPhoneStr
 import com.maxbay.presentation.ui.values.paddingBottomBtnSignOut
 import com.maxbay.presentation.ui.values.paddingHorizontalBaseColumn
 import com.maxbay.presentation.ui.values.space24
@@ -52,7 +53,7 @@ fun ProfileScreen(
                         rightIconId = R.drawable.ic_sign_out,
                         contentDescriptionRightIcon = R.string.ic_sign_out_description,
                         title = "${uiState.user.firstName} ${uiState.user.secondName}",
-                        subtitle = uiState.user.mobilePhone
+                        subtitle = uiState.user.mobilePhone.getPhoneStr()
                     )
                     
                     Spacer(modifier = Modifier.height(space24))

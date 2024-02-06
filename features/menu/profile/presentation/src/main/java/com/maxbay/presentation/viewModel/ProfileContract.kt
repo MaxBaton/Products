@@ -18,7 +18,7 @@ interface ProfileContract: UnidirectionalViewModel<
     }
 
     sealed interface Event {
-        data class SignOut(val userId: Int): Event
+        data object SignOut: Event
     }
 
     sealed interface Effect {

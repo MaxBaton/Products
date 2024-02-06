@@ -30,7 +30,7 @@ fun AppNavHost(navController: NavHostController = rememberNavController()) {
             startDestination = startDestination
         ) {
             auth(onNavigateToMenu = navController::navigateToMenu)
-            menu()
+            menu(onSignOut = navController::navigateToAuth)
         }
     }
 }

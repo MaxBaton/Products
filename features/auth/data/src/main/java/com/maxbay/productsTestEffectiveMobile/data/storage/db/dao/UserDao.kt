@@ -27,4 +27,10 @@ interface UserDao {
         + " from " + UserEntity.TABLE_NAME
     )
     suspend fun getRegisterUser(): UserDto
+
+    @Query(
+        "delete from " + UserEntity.TABLE_NAME
+        + " where + " + UserEntity.ID + " = :userId"
+    )
+    suspend fun deleteUserById(userId: Int)
 }

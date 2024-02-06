@@ -16,16 +16,16 @@ import com.maxbay.productsTestEffectiveMobile.presentation.viewModel.MenuViewMod
 
 const val MENU_GRAPH = "MENU_GRAPH"
 
-fun NavGraphBuilder.menu() {
+fun NavGraphBuilder.menu(onSignOut: () -> Unit) {
     navigation(
         route = MENU_GRAPH,
         startDestination = MenuDestination.route
     ) {
-        bottomMenuInner()
+        bottomMenuInner(onSignOut = onSignOut)
     }
 }
 
-private fun NavGraphBuilder.bottomMenuInner() {
+private fun NavGraphBuilder.bottomMenuInner(onSignOut: () -> Unit) {
     composable(route = MenuDestination.route) {
         val menuComponent = DaggerMenuComponent
             .builder()
@@ -39,7 +39,8 @@ private fun NavGraphBuilder.bottomMenuInner() {
         val bottomMenuUiState by menuViewModel.uiState.collectAsStateWithLifecycle()
 
         MenuScreen(
-            uiState = bottomMenuUiState
+            uiState = bottomMenuUiState,
+            onSignOut = onSignOut
         )
     }
 }
@@ -49,6 +50,7 @@ object MenuDestination: NavDestination {
 }
 
 fun NavHostController.navigateToMenu() {
+    popBackStack()
     navigate(route = MenuDestination.route) {
         popUpTo(route = MainBottomMenuDestination.route) {
             inclusive = true

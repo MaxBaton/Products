@@ -4,6 +4,7 @@ import com.maxbay.api.AuthApi
 import com.maxbay.productsTestEffectiveMobile.di.AuthFeatureDepsProvider
 import com.maxbay.productsTestEffectiveMobile.di.DaggerAuthComponent
 import com.maxbay.productsTestEffectiveMobile.useCase.GetRegisterUserUseCase
+import com.maxbay.productsTestEffectiveMobile.useCase.SignOutUseCase
 
 class AuthApiImpl: AuthApi {
     private val authComponent by lazy {
@@ -15,5 +16,9 @@ class AuthApiImpl: AuthApi {
 
     override fun getResisterUserUseCase(): GetRegisterUserUseCase {
         return authComponent.getRegisterUserUseCase
+    }
+
+    override fun signOutUseCase(): SignOutUseCase {
+        return authComponent.signOutUseCase
     }
 }

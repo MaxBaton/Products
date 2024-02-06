@@ -18,4 +18,8 @@ class UserDbStorage(private val userDao: UserDao): UserStorage {
     override suspend fun getRegisterUser(): UserModelStorage {
         return userDao.getRegisterUser().toStorage()
     }
+
+    override suspend fun deleteUserById(userId: Int) {
+        userDao.deleteUserById(userId = userId)
+    }
 }

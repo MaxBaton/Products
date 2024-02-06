@@ -1,6 +1,7 @@
 package com.maxbay.productsTestEffectiveMobile.di
 
 import com.maxbay.productsTestEffectiveMobile.useCase.GetRegisterUserUseCase
+import com.maxbay.productsTestEffectiveMobile.useCase.SignOutUseCase
 import com.maxbay.productsTestEffectiveMobile.viewModel.AuthViewModelFactory
 import dagger.Component
 
@@ -12,6 +13,7 @@ import dagger.Component
 interface AuthComponent {
     val authViewModelFactory: AuthViewModelFactory
     val getRegisterUserUseCase: GetRegisterUserUseCase
+    val signOutUseCase: SignOutUseCase
 
     @Component.Builder
     interface Builder {

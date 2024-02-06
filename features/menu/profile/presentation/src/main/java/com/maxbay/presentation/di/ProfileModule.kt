@@ -9,6 +9,9 @@ import dagger.Provides
 class ProfileModule {
     @Provides
     fun provideProfileViewModelFactory(authApi: AuthApi): ProfileViewModelFactory {
-        return ProfileViewModelFactory(getRegisterUserUseCase = authApi.getResisterUserUseCase())
+        return ProfileViewModelFactory(
+            getRegisterUserUseCase = authApi.getResisterUserUseCase(),
+            signOutUseCase = authApi.signOutUseCase()
+        )
     }
 }

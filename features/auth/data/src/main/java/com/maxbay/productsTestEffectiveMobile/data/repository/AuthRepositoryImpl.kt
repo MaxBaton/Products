@@ -31,4 +31,10 @@ class AuthRepositoryImpl(
             userStorage.getRegisterUser().toDomain()
         }
     }
+
+    override suspend fun signOut(userId: Int) {
+        withContext(dispatcher) {
+            userStorage.deleteUserById(userId = userId)
+        }
+    }
 }

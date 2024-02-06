@@ -7,4 +7,5 @@ interface AuthRepository {
     suspend fun signUp(userSignUp: UserSignUp)
     suspend fun getRegisterUserId(): Int
     suspend fun getRegisterUser(): User
+    suspend fun signOut(userId: Int)
 }

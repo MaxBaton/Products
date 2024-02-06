@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="profile_screen_title">Профиль</string>
+    <string name="profile_screen_top_bar_title">Личный кабинет</string>
+    <string name="sign_out">Выйти</string>
+    <string name="favorite">Избранное</string>
+    <string name="favorites_count">%1$s товар</string>
+
+<!--    Icon descriptions-->
+    <string name="ic_profile_description">Профиль</string>
+    <string name="ic_sign_out_description">Выход</string>
+    <string name="ic_favorite_description">Избранное</string>
+    <string name="ic_next_description">Избранное</string>
 </resources>

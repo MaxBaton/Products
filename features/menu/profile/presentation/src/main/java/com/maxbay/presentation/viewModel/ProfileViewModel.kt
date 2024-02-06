@@ -33,7 +33,7 @@ class ProfileViewModel(
         viewModelScope.launch(exceptionHandler) {
             val user = getRegisterUserUseCase.execute()
             _uiState.update {
-                ProfileContract.State.Success(user = user)
+                ProfileContract.State.Success(user = user, favoritesCount = 1)
             }
         }
     }

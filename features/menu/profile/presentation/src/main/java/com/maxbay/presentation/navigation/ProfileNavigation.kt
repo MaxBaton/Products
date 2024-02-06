@@ -27,6 +27,9 @@ fun NavGraphBuilder.profile() {
         val profileViewModel: ProfileViewModel = viewModel(factory = profileComponent.profileViewModelFactory)
         val uiState by profileViewModel.uiState.collectAsStateWithLifecycle()
 
-        ProfileScreen(uiState = uiState)
+        ProfileScreen(
+            uiState = uiState,
+            onSignOutClick = {}
+        )
     }
 }

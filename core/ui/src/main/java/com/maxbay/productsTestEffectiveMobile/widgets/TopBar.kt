@@ -15,7 +15,9 @@ import com.maxbay.productsTestEffectiveMobile.ui.zeroVal
 
 @ExperimentalMaterial3Api
 @Composable
-fun TopBar(title: String) {
+fun TopBar(
+    title: String
+) {
     CenterAlignedTopAppBar(
         title = {
             Text(

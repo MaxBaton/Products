@@ -11,7 +11,10 @@ interface ProfileContract: UnidirectionalViewModel<
     sealed interface State {
         data object Loading: State
         data object Fail: State
-        data class Success(val user: User): State
+        data class Success(
+            val user: User,
+            val favoritesCount: Int
+        ): State
     }
 
     sealed interface Event {

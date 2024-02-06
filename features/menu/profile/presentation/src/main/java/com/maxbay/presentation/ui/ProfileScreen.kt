@@ -2,6 +2,7 @@ package com.maxbay.presentation.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -12,20 +13,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.maxbay.presentation.R
+import com.maxbay.presentation.viewModel.ProfileContract
 import com.maxbay.productsTestEffectiveMobile.ui.ProductsTheme
 
 @Composable
-fun ProfileScreen(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = stringResource(id = R.string.profile_screen_title),
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onSurface,
-            overflow = TextOverflow.Ellipsis
-        )
+fun ProfileScreen(
+    uiState: ProfileContract.State,
+    modifier: Modifier = Modifier
+) {
+    when(uiState) {
+        ProfileContract.State.Fail -> {}
+        ProfileContract.State.Loading -> {}
+        is ProfileContract.State.Success -> {
+            Column {
+                Text(text = "${uiState.user.firstName}\n${uiState.user.secondName}")
+            }
+        }
     }
 }
 
@@ -33,6 +36,6 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 internal fun ProfileScreenPreview() {
     ProductsTheme {
-        ProfileScreen(modifier = Modifier.background(color = MaterialTheme.colorScheme.primary))
+//        ProfileScreen(modifier = Modifier.background(color = MaterialTheme.colorScheme.primary))
     }
 }

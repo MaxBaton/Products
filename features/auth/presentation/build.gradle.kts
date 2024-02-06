@@ -42,6 +42,7 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:contract:mvi"))
     implementation(project(":features:auth:domain"))
+    implementation(project(":features:auth:api"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
